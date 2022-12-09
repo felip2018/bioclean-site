@@ -1,0 +1,14 @@
+#navigationMenu {
+    position: sticky;
+    z-index: 100;
+    top: 0px;
+    background-color: #FFFFFF;
+    border-radius: 0px 0px 20px 20px;
+}
+#logoNavBar {
+    width: 140px;
+    height: auto;
+}
+#content {
+    margin-top: 10px;
+}
