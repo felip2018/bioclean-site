@@ -1,6 +1,6 @@
-<div class="container" id="navigationMenu">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="container-fluid" id="navigationMenu">
+    <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-12 col-md-10">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">
                     <img src="./assets/img/logo-bioclean.png" alt="logo-bioclean.png" id="logoNavBar">
@@ -8,19 +8,28 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-              
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" routerLink="/home">Inicio</a>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/home">
+                              Inicio
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" routerLink="/products">Kits</a>
+                            <a class="nav-link" routerLink="/products">
+                              Kits
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/cart">
                                 Carrito
                             </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" routerLink="/login">
+                              Iniciar sesión
+                          </a>
                         </li>
                     </ul>
                 </div>

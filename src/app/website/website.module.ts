@@ -11,6 +11,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { CartPreviewComponent } from './components/cart-preview/cart-preview.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 
 
@@ -25,7 +26,8 @@ import { ProductsComponent } from './pages/products/products.component';
     ProductItemComponent,
     CartPreviewComponent,
     FooterComponent,
-    ProductsComponent
+    ProductsComponent,
+    SignupComponent
   ],
   imports: [
     CommonModule,
