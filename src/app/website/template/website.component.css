@@ -18,8 +18,5 @@
 }
 
 #navbarSupportedContent li a:hover {
-  border: 1px solid #CAD641;
-  padding: 5px;
-  border-radius: 10px;
-  font-size: 18pt;
+  border-bottom: 1px solid #CAD641;
 }

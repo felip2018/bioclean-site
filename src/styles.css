@@ -1,9 +1,14 @@
 body {
-  background-color: #dfe6e9;
+  /*background-color: #dfe6e9;*/
+  background-color: #FCF8F6;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: #9061A4;
+}
+
+p, label {
+  font-size: 16pt;
 }
 
 .section {
