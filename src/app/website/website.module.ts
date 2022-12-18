@@ -12,6 +12,11 @@ import { CartPreviewComponent } from './components/cart-preview/cart-preview.com
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { PolicyComponent } from './pages/policy/policy.component';
+import { BeDistributorComponent } from './pages/be-distributor/be-distributor.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 
 
 
@@ -27,7 +32,12 @@ import { SignupComponent } from './pages/signup/signup.component';
     CartPreviewComponent,
     FooterComponent,
     ProductsComponent,
-    SignupComponent
+    SignupComponent,
+    TermsAndConditionsComponent,
+    ContactComponent,
+    PolicyComponent,
+    BeDistributorComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     CommonModule,

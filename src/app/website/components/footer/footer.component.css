@@ -10,6 +10,7 @@ ul li a {
     text-decoration: none;
     font-weight: bold;
     color: #576574;
+    font-size: 16pt;
 }
 
 ul li a:hover {
