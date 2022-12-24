@@ -1,1 +1,14 @@
-<p>fragances works!</p>
+<app-header [title]="'Fragancias'"></app-header>
+<div class="row">
+  <div class="col-12" style="padding: 20px;">
+    <button class="btn btn-info" (click)="showRegisterForm()"><i class="fa fa-plus"></i> Nuevo</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12" style="padding: 10px;" *ngFor="let fragance of fragancesList">
+    <div style="background-color: #FFFFFF;border-radius: 10px;padding: 15px;">
+      <strong>{{fragance.nombre}}</strong>
+      <button class="btn btn-info" style="float:right">Estado</button>
+    </div>
+  </div>
+</div>

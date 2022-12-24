@@ -11,6 +11,8 @@ import { WebappRoutingModule } from './webapp-routing.module';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { SalesComponent } from './pages/sales/sales.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -24,7 +26,9 @@ import { ConfigurationComponent } from './pages/configuration/configuration.comp
     FragancesComponent,
     OrdersComponent,
     SalesComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

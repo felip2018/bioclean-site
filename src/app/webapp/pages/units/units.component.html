@@ -1,1 +1,14 @@
-<p>units works!</p>
+<app-header [title]="'Unidades de medida'"></app-header>
+<div class="row">
+  <div class="col-12" style="padding: 20px;">
+    <button class="btn btn-info"><i class="fa fa-plus"></i> Nuevo</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12" style="padding: 10px;" *ngFor="let unit of unitsList">
+    <div style="background-color: #FFFFFF;border-radius: 10px;padding: 15px;">
+      <strong>{{unit.nombre}}</strong>
+      <button class="btn btn-info" style="float:right">Estado</button>
+    </div>
+  </div>
+</div>

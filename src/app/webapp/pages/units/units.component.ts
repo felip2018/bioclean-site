@@ -7,7 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnitsComponent implements OnInit {
 
-  constructor() { }
+  unitsList: any[];
+
+  constructor() {
+    this.unitsList = [
+      {
+        id: 1,
+        nombre: 'Litro',
+        abreviatura: 'lt',
+        estado: 'Activo'
+      },
+      {
+        id: 2,
+        nombre: 'Galón',
+        abreviatura: 'gl',
+        estado: 'Activo'
+      },
+      {
+        id: 3,
+        nombre: 'Garrafa',
+        abreviatura: 'gfa',
+        estado: 'Activo'
+      },
+    ]
+  }
 
   ngOnInit(): void {
   }

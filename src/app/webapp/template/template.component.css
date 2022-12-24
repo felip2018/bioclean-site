@@ -53,5 +53,6 @@
 #contentContainer {
   height: 100vh;
   padding: 20px;
-  background-color: #F7F8FB;
+  /*background-color: #F7F8FB;*/
+  background-color: #c8d6e5;
 }
