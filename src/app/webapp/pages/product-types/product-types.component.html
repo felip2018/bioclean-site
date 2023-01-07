@@ -1,4 +1,4 @@
-<app-header [title]="'Unidades de medida'"></app-header>
+<app-header [title]="'Tipos de producto'"></app-header>
 <div class="row">
   <div class="col-12" style="padding: 10px;">
     <button class="btn btn-info" (click)="showRegisterForm()"><i class="fa fa-plus"></i> Nuevo</button>
@@ -9,9 +9,9 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-12" style="padding: 10px;" *ngFor="let unit of unitsList">
+  <div class="col-12" style="padding: 10px;" *ngFor="let type of productTypesList">
     <div style="background-color: #FFFFFF;border-radius: 5px;padding: 10px;">
-      <label>{{unit.nombre}}</label>
+      <label>{{type.nombre}}</label>
       <button class="btn btn-info" style="float:right">Estado</button>
     </div>
   </div>

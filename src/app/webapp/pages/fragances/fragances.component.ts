@@ -8,9 +8,11 @@ import Swal from 'sweetalert2';
 })
 export class FragancesComponent implements OnInit {
 
+  showForm: boolean;
   fragancesList: any[];
 
   constructor() {
+    this.showForm = false;
     this.fragancesList = [
       {
         id: 1,
@@ -27,14 +29,15 @@ export class FragancesComponent implements OnInit {
         nombre: 'Naranja',
         estado: 'Activo'
       },
-    ]
+    ];
   }
 
   ngOnInit(): void {
   }
 
   showRegisterForm(): void {
-    Swal.fire({
+    this.showForm = !this.showForm;
+    /*Swal.fire({
       title: '<strong>HTML <u>example</u></strong>',
       icon: 'info',
       html:
@@ -50,6 +53,6 @@ export class FragancesComponent implements OnInit {
       cancelButtonText:
         '<i class="fa fa-thumbs-down"></i>',
       cancelButtonAriaLabel: 'Thumbs down'
-    })
+    })*/
   }
 }

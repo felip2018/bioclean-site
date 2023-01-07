@@ -3,13 +3,13 @@
     <div class="col-xs-12 col-sm-12 col-md-3 loginContainer">
       <h4>Iniciar sesión</h4>
       <hr>
-      <form>
+      <form [formGroup]="loginForm" (submit)="login()" autocomplete="off">
         <label>Correo electrónico</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" formControlName="username">
         <label>Contraseña</label>
-        <input type="password" class="form-control">
+        <input type="password" class="form-control" formControlName="password">
         <br>
-        <button class="btn btn-action btn-block">
+        <button class="btn btn-action btn-block" [disabled]="loginForm.invalid">
           <i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión
         </button>
         <br>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -41,7 +42,11 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
   ],
   imports: [
     CommonModule,
-    WebsiteRoutingModule
+    WebsiteRoutingModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+
   ]
 })
 export class WebsiteModule { }

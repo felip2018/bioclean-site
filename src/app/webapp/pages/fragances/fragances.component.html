@@ -1,13 +1,17 @@
 <app-header [title]="'Fragancias'"></app-header>
 <div class="row">
-  <div class="col-12" style="padding: 20px;">
+  <div class="col-12" style="padding: 10px;">
     <button class="btn btn-info" (click)="showRegisterForm()"><i class="fa fa-plus"></i> Nuevo</button>
+    <hr>
+    <div *ngIf="showForm" style="background-color: #FFFFFF;border-radius: 5px;padding: 10px;">
+      formulario de registro
+    </div>
   </div>
 </div>
 <div class="row">
   <div class="col-12" style="padding: 10px;" *ngFor="let fragance of fragancesList">
-    <div style="background-color: #FFFFFF;border-radius: 10px;padding: 15px;">
-      <strong>{{fragance.nombre}}</strong>
+    <div style="background-color: #FFFFFF;border-radius: 5px;padding: 10px;">
+      <label>{{fragance.nombre}}</label>
       <button class="btn btn-info" style="float:right">Estado</button>
     </div>
   </div>

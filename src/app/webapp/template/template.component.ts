@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateComponent implements OnInit {
 
+  isHidden = true;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  hideShowMenu() {
+    this.isHidden = !this.isHidden;
+  }
 }

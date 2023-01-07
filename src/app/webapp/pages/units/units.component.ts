@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./units.component.css']
 })
 export class UnitsComponent implements OnInit {
-
+  showForm: boolean;
   unitsList: any[];
 
   constructor() {
+    this.showForm = false;
     this.unitsList = [
       {
         id: 1,
@@ -35,4 +36,7 @@ export class UnitsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showRegisterForm(): void {
+    this.showForm = !this.showForm;
+  }
 }
