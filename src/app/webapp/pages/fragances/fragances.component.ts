@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
+import { IGeneric } from '../../models/igeneric';
+import { FragancesService } from '../../services/fragances.service';
 
 @Component({
   selector: 'app-fragances',
@@ -9,50 +13,74 @@ import Swal from 'sweetalert2';
 export class FragancesComponent implements OnInit {
 
   showForm: boolean;
-  fragancesList: any[];
+  fragancesList: IGeneric[] = [];
+  applicationForm: FormGroup;
+  isUpdate: boolean;
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder,
+              private fragancesService: FragancesService) {
     this.showForm = false;
-    this.fragancesList = [
-      {
-        id: 1,
-        nombre: 'Manzana',
-        estado: 'Activo'
-      },
-      {
-        id: 2,
-        nombre: 'Limón',
-        estado: 'Activo'
-      },
-      {
-        id: 3,
-        nombre: 'Naranja',
-        estado: 'Activo'
-      },
-    ];
+    this.isUpdate = false;
+    this.applicationForm = this.formBuilder.group({
+      id: [0],
+      nombre: ['', Validators.required],
+      estado: ['Activo'],
+    });
   }
 
   ngOnInit(): void {
+    this.getFragances();
+  }
+
+  async getFragances() {
+    try {
+      this.fragancesList = await lastValueFrom(this.fragancesService.getAll());
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   showRegisterForm(): void {
     this.showForm = !this.showForm;
-    /*Swal.fire({
-      title: '<strong>HTML <u>example</u></strong>',
-      icon: 'info',
-      html:
-        'You can use <b>bold text</b>, ' +
-        '<a href="//sweetalert2.github.io">links</a> ' +
-        'and other HTML tags',
-      showCloseButton: true,
-      showCancelButton: true,
-      focusConfirm: false,
-      confirmButtonText:
-        '<i class="fa fa-thumbs-up"></i> Great!',
-      confirmButtonAriaLabel: 'Thumbs up, great!',
-      cancelButtonText:
-        '<i class="fa fa-thumbs-down"></i>',
-      cancelButtonAriaLabel: 'Thumbs down'
-    })*/
+    if (this.isUpdate) {
+      this.showForm = true;
+      this.isUpdate = false;
+      this.applicationForm.reset();
+    }
+  }
+
+  async submit() {
+    try {
+      if (!this.isUpdate){
+        await lastValueFrom(this.fragancesService.save(this.applicationForm.value))
+      } else {
+        await lastValueFrom(this.fragancesService.update(this.applicationForm.value))
+        this.isUpdate = false;
+      }
+      this.applicationForm.reset();
+      this.getFragances();
+    } catch (error: any) {
+      console.log('error > ', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error?.error?.message,
+        footer: ''
+      })
+    }
+  }
+
+  updateFragance(fragance: IGeneric) {
+    this.isUpdate = true;
+    this.applicationForm.controls['id'].setValue(fragance.id);
+    this.applicationForm.controls['nombre'].setValue(fragance.nombre);
+    this.applicationForm.controls['estado'].setValue(fragance.estado);
+    this.showForm = true;
+  }
+
+  async updateStatus(fragance: IGeneric, status: string) {
+    fragance.estado = status;
+    await lastValueFrom(this.fragancesService.update(fragance));
+    this.getFragances();
   }
 }

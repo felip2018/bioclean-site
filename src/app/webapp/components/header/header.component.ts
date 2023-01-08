@@ -8,14 +8,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Input() title = '';
-  @Output() hideShowMenu = new EventEmitter();
+  @Input() showButton = false;
+  @Output() showRegisterFormEvent = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  hideShowMenuEvent() {
-    this.hideShowMenu.emit();
+  showRegisterForm() {
+    this.showRegisterFormEvent.emit();
   }
 }

@@ -1,5 +1,6 @@
 <div class="row" class="headerContainer">
-  <div class="col-12">
     <strong>{{title}}</strong>
-  </div>
+    <button *ngIf="showButton" class="btn btn-info buttonForm" title="Nuevo" (click)="showRegisterForm()">
+      <i class="fa fa-plus"></i>
+    </button>
 </div>

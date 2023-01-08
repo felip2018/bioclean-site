@@ -1,18 +1,36 @@
-<app-header [title]="'Categorias'"></app-header>
+<app-header [title]="'Categorias'" [showButton]="true" (showRegisterFormEvent)="showRegisterForm()"></app-header>
 <div class="row">
   <div class="col-12" style="padding: 10px;">
-    <button class="btn btn-info" (click)="showRegisterForm()"><i class="fa fa-plus"></i> Nuevo</button>
-    <hr>
     <div *ngIf="showForm" style="background-color: #FFFFFF;border-radius: 5px;padding: 10px;">
-      formulario de registro
+      <form (submit)="submit()" [formGroup]="applicationForm">
+        <label>Ingrese el nombre</label>
+        <input type="text" class="form-control" formControlName="nombre">
+        <hr>
+        <button type="submit" class="btn btn-primary" [disabled]="!applicationForm.valid">
+          <i class="fa-solid fa-floppy-disk"></i>
+        </button>
+      </form>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-12" style="padding: 10px;" *ngFor="let type of productTypesList">
+  <div class="col-12" style="padding: 10px;" *ngFor="let element of categoriesList">
     <div style="background-color: #FFFFFF;border-radius: 5px;padding: 10px;">
-      <label>{{type.nombre}}</label>
-      <button class="btn btn-info" style="float:right">Estado</button>
+      <label>{{element.nombre}}</label>
+
+      <button *ngIf="element.estado == 'Activo'" class="btn btn-danger" style="float:right" title="Eliminar"
+      (click)="updateStatus(element, 'Inactivo')">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+
+      <button *ngIf="element.estado == 'Inactivo'" class="btn btn-success" style="float:right" title="Activar"
+      (click)="updateStatus(element, 'Activo')">
+        <i class="fa-solid fa-check"></i>
+      </button>
+
+      <button class="btn btn-info" style="float:right" title="Editar" (click)="updateCategory(element)">
+        <i class="fa-solid fa-pen"></i>
+      </button>
     </div>
   </div>
 </div>

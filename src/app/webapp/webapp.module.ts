@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductTypesComponent } from './pages/product-types/product-types.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -37,7 +38,8 @@ import { CategoriesComponent } from './pages/categories/categories.component';
   imports: [
     CommonModule,
     RouterModule,
-    WebappRoutingModule
+    WebappRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class WebappModule { }
