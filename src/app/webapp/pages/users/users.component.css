@@ -1,0 +1,18 @@
+.btn-profile {
+  margin-right: 5px;
+}
+
+.profileLabel {
+  padding: 0px 5px 0px 5px;
+  border-radius: 5px;
+  color: #FFFFFF;
+}
+
+.userInfo {
+  background-color: #FFFFFF;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  margin: 5px;
+}
+

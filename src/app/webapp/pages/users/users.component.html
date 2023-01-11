@@ -1,1 +1,34 @@
-<app-header [title]="'Usuarios'"></app-header>
+<app-header [title]="'Usuarios'" [showButton]="false"></app-header>
+<hr>
+<div class="row justify-content-center">
+  <div class="col-xs-12 col-sm-12 col-md-10" style="padding:10px">
+    <button class="btn btn-info btn-profile" (click)="filterUsers(0)">Todos</button> |
+    <button class="btn btn-info btn-profile" *ngFor="let profile of profiles" (click)="filterUsers(profile.id)">{{profile.nombre}}</button>
+    <div class="row userInfo" *ngFor="let element of usersList">
+      <div class="col-xs-12 col-sm-12 col-md-1">
+        <img src="/assets/img/avatar_1.png" alt="avatar_1.png" style="width: 100%;">
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-9">
+        <label>{{element.primer_nombre}} {{element.segundo_nombre}} {{element.primer_apellido}} {{element.segundo_apellido}} | {{element.tipo_documento}} {{element.numero_documento}}</label><br>
+        <label>{{element.correo_electronico}} | {{element.telefono}}</label><br>
+        <label class="profileLabel" style="background-color: {{element.color_perfil}};">{{element.perfil}}</label>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-2">
+        <button *ngIf="element.estado == 'Activo'" class="btn btn-danger" style="float:right" title="Eliminar" (click)="updateStatus(element.id, 'Inactivo')">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+
+        <button *ngIf="element.estado == 'Inactivo'" class="btn btn-success" style="float:right" title="Activar" (click)="updateStatus(element.id, 'Activo')">
+          <i class="fa-solid fa-check"></i>
+        </button>
+
+        <button class="btn btn-info" style="float:right" title="Editar" (click)="editUser(element.id)">
+          <i class="fa-solid fa-pen"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-loader [showLoader]="showLoader"></app-loader>
+

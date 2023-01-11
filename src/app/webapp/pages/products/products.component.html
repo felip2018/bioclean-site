@@ -1,105 +1,27 @@
-<app-header [title]="'Productos'"></app-header>
-<div class="row">
-  <div class="col-12" style="padding: 20px;">
-    <button class="btn btn-info"><i class="fa fa-plus"></i> Nuevo</button>
-  </div>
-</div>
-<div class="row" style="border:1px solid red;height:80vh;overflow-y: scroll;">
-  <div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-        <div class="card">
-          <img src="/assets/img/no-image.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">ALCOHOL DESINFECTANTE AL 70% 750 ML</h5>
-            <strong>6.250 COP</strong>
-            <button class="btn btn-block btn-action">
-              <i class="fa fa-cart-plus"></i> Agregar al carrito
-            </button>
-          </div>
-        </div>
+<app-header [title]="'Productos'" [showButton]="false"></app-header>
+<hr>
+<div class="row justify-content-center">
+  <div class="col-xs-12 col-sm-12 col-md-10">
+    <div class="row productInfo" *ngFor="let element of productsList">
+      <div class="col-xs-12 col-sm-12 col-md-1">
+        <img src="/assets/img/no-image.png" class="card-img-top" alt="no-image.png">
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-        <div class="card">
-          <img src="/assets/img/no-image.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">AMBIENTADOR AROMATIZANTE DE ESPACIOS 250 ML FRUTOS ROJOS</h5>
-            <strong>6.500 COP</strong>
-            <button class="btn btn-block btn-action">
-              <i class="fa fa-cart-plus"></i> Agregar al carrito
-            </button>
-          </div>
-        </div>
+      <div class="col-xs-12 col-sm-12 col-md-9">
+        <label>{{element.tipo_producto}} {{element.fragancia}} x {{element.unidad_medida}}</label><br>
+        <label>Código: {{element.codigo}}</label>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-        <div class="card">
-          <img src="/assets/img/no-image.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">BIOJAX CON BICARBONATO PET LITRO TORONJA LIMON</h5>
-            <strong>3.550 COP</strong>
-            <button class="btn btn-block btn-action">
-              <i class="fa fa-cart-plus"></i> Agregar al carrito
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-        <div class="card">
-          <img src="/assets/img/no-image.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">CERA POLIMERICA AUTOBRILLANTE PET 500 ML</h5>
-            <strong>4.500 COP</strong>
-            <button class="btn btn-block btn-action">Agregar al carrito</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-        <div class="card">
-          <img src="/assets/img/no-image.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">DESENGRASANTE ESPESO GALON 4.000 ML</h5>
-            <strong>17.000 COP</strong>
-            <button class="btn btn-block btn-action">
-              <i class="fa fa-cart-plus"></i> Agregar al carrito
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-        <div class="card">
-          <img src="/assets/img/no-image.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">DETERGENTE LIQUIDO LAVA LOZA PET LITRO LIMON</h5>
-            <strong>5.800 COP</strong>
-            <button class="btn btn-block btn-action">
-              <i class="fa fa-cart-plus"></i> Agregar al carrito
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-        <div class="card">
-          <img src="/assets/img/no-image.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">DETERGENTE LIQUIDO LAVA LOZA PET LITRO LIMON</h5>
-            <strong>5.800 COP</strong>
-            <button class="btn btn-block btn-action">
-              <i class="fa fa-cart-plus"></i> Agregar al carrito
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-        <div class="card">
-          <img src="/assets/img/no-image.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">DETERGENTE LIQUIDO LAVA LOZA PET LITRO LIMON</h5>
-            <strong>5.800 COP</strong>
-            <button class="btn btn-block btn-action">
-              <i class="fa fa-cart-plus"></i> Agregar al carrito
-            </button>
-          </div>
-        </div>
+      <div class="col-xs-12 col-sm-12 col-md-2">
+        <button *ngIf="element.estado === 'Activo'" class="btn btn-danger" style="float:right" title="Eliminar" (click)="updateStatus(element.id, 'Inactivo')">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+
+        <button *ngIf="element.estado === 'Inactivo'" class="btn btn-success" style="float:right" title="Activar" (click)="updateStatus(element.id, 'Activo')">
+          <i class="fa-solid fa-check"></i>
+        </button>
+
+        <button class="btn btn-info" style="float:right" title="Editar" (click)="editProduct(element.id)">
+          <i class="fa-solid fa-pen"></i>
+        </button>
       </div>
     </div>
   </div>

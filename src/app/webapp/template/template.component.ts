@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-template',
@@ -8,10 +8,31 @@ import { Component, OnInit } from '@angular/core';
 export class TemplateComponent implements OnInit {
 
   isHidden = true;
+  showCloseMenu = false;
+  showOpenMenu = false;
 
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    const width = event.target.innerWidth;
+    // console.log(`width:: ${width}`);
+    let menuContainer = document.getElementById('menuContainer');
+    if (width <= 992) {
+      menuContainer?.classList.remove('menuContainerDesktop');
+      menuContainer?.classList.add('menuContainerMobile');
+      this.showCloseMenu = true;
+      this.showOpenMenu = true;
+    } else {
+      menuContainer?.classList.remove('menuContainerMobile');
+      menuContainer?.classList.add('menuContainerDesktop');
+      this.showCloseMenu = false;
+      this.showOpenMenu = false;
+    }
   }
 
   hideShowMenu() {

@@ -3,9 +3,15 @@
 }
 
 #menuContainer {
+  position: fixed;
   padding: 20px;
   background-color: #4E73DF;
   color: #FFFFFF;
+  z-index: 100;
+  border-radius: 10px;
+  top: 0px;
+  right: 0px;
+  height: 100%;
 }
 
 .menuTitle {
@@ -19,13 +25,28 @@
 
 .menu {
   text-align: left;
+  float: left;
+  height: 60%;
+  overflow-y: scroll;
+}
+.menu::-webkit-scrollbar-track {
+  padding: 5px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+}
+.menu::-webkit-scrollbar {
+  width: 10px;
+}
+.menu::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #54a0ff;
 }
 
 .submenu {
   float: left;
   width: 100%;
   background-color: #54a0ff;
-  padding-left: 15px;
+  padding: 10px 0px 0px 10px;
   border-radius: 5px;
 }
 
@@ -50,8 +71,6 @@
   color: #4E73DF;
 }
 
-
-
 .closeItem {
   border:1px solid #ee5253;
   color: #FFFFFF;
@@ -65,4 +84,20 @@
 
 .hideMenu {
   border:1px solid red;
+}
+
+.btn-close-menu {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+}
+
+.btn-open-menu {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  position: fixed;
+  z-index: 50;
+  bottom: 20px;
+  right: 20px;
 }

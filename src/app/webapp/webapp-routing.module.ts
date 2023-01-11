@@ -3,8 +3,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { ConfigurationComponent } from "./pages/configuration/configuration.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { OrdersComponent } from "./pages/orders/orders.component";
+import { ProductsRegisterComponent } from "./pages/products-register/products-register.component";
 import { ProductsComponent } from "./pages/products/products.component";
 import { SalesComponent } from "./pages/sales/sales.component";
+import { UsersRegisterComponent } from "./pages/users-register/users-register.component";
 import { UsersComponent } from "./pages/users/users.component";
 
 const routes: Routes = [
@@ -17,8 +19,16 @@ const routes: Routes = [
       component: ProductsComponent
     },
     {
+      path: 'register-product',
+      component: ProductsRegisterComponent
+    },
+    {
       path: 'users',
       component: UsersComponent
+    },
+    {
+      path: 'register-user',
+      component: UsersRegisterComponent
     },
     {
       path: 'configuration',

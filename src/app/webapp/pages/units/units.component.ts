@@ -61,7 +61,7 @@ export class UnitsComponent implements OnInit {
         title: 'Oops...',
         text: error?.error?.message,
         footer: ''
-      })
+      });
     }
   }
 

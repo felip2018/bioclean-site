@@ -9,6 +9,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() title = '';
   @Input() showButton = false;
+  @Input() showForm = false;
   @Output() showRegisterFormEvent = new EventEmitter();
 
   constructor() { }

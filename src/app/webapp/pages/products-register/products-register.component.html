@@ -1,0 +1,82 @@
+<app-header [title]="'Registrar producto'" [showButton]="false"></app-header>
+<hr>
+<div class="row justify-content-center" style="padding: 10px;">
+  <div class="col-xs-12 col-sm-12 col-md-6" style="padding:10px">
+    <div class="row productRegister">
+      <form class="col-12" (submit)="submit()" [formGroup]="applicationForm">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Categoría</label>
+            <select class="form-control" formControlName="categoria_id">
+              <option value="">-Seleccione</option>
+              <option *ngFor="let category of categories" value="{{category.id}}">{{category.nombre}}</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Código de producto</label>
+            <input type="number" class="form-control" formControlName="codigo">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Tipo de producto</label>
+            <select class="form-control" formControlName="tipo_producto_id">
+              <option value="">-Seleccione</option>
+              <option *ngFor="let type of product_types" value="{{type.id}}">{{type.nombre}}</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Unidad de medida</label>
+            <select class="form-control" formControlName="unidad_medida_id">
+              <option value="">-Seleccione</option>
+              <option *ngFor="let unit of units" value="{{unit.id}}">{{unit.nombre}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <label>Fragancia</label>
+            <select class="form-control" formControlName="fragancia_id">
+              <option value="">-Seleccione</option>
+              <option *ngFor="let fragance of fragances" value="{{fragance.id}}">{{fragance.nombre}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Precio público ($)</label>
+            <input class="form-control" formControlName="precio_publico">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Precio distribuidor ($)</label>
+            <input class="form-control" formControlName="precio_distribuidor">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <label>Cantidad</label>
+            <input class="form-control" type="number" formControlName="cantidad">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <label>Stock mínimo</label>
+            <input class="form-control" type="number" formControlName="stock_minimo">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <label>Stock máximo</label>
+            <input class="form-control" type="number" formControlName="stock_maximo">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <hr>
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!applicationForm.valid">
+              <i class="fa-solid fa-floppy-disk"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-loader [showLoader]="showLoader"></app-loader>

@@ -16,6 +16,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductTypesComponent } from './pages/product-types/product-types.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoaderComponent } from './components/loader/loader.component';
+import { UsersRegisterComponent } from './pages/users-register/users-register.component';
+import { ProductsRegisterComponent } from './pages/products-register/products-register.component';
 
 
 
@@ -33,7 +36,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     ProductTypesComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    LoaderComponent,
+    UsersRegisterComponent,
+    ProductsRegisterComponent
   ],
   imports: [
     CommonModule,

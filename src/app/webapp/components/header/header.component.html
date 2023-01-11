@@ -1,6 +1,6 @@
 <div class="row" class="headerContainer">
     <strong>{{title}}</strong>
     <button *ngIf="showButton" class="btn btn-info buttonForm" title="Nuevo" (click)="showRegisterForm()">
-      <i class="fa fa-plus"></i>
+      <i class="fa {{showForm ? 'fa-xmark' : 'fa-plus'}}"></i>
     </button>
 </div>

@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row">
-    <div *ngIf="isHidden" class="col-xs-12 col-sm-12 col-md-2 col-lg-2" id="menuContainer">
+    <div *ngIf="isHidden" class="col-xs-12 col-sm-12 col-md-4 col-lg-3" id="menuContainer">
       <div class="menuButton" style="width: 100%;float: left;">
-        <button class="btn btn-primary" style="float: right;" (click)="hideShowMenu()">
+        <button class="btn btn-primary btn-close-menu" style="float: right;" (click)="hideShowMenu()">
           <i class="fa-solid fa-times"></i>
         </button>
       </div>
@@ -22,6 +22,11 @@
         </div>
         <div class="menuItem">
           <a routerLink="products"><i class="fa-solid fa-wine-bottle"></i> Productos</a>
+          <div class="submenu">
+            <div class="menuItem">
+              <a routerLink="register-product"><i class="fa-solid fa-plus"></i> Registrar</a>
+            </div>
+          </div>
         </div>
         <div class="menuItem">
           <a routerLink="orders"><i class="fa-solid fa-file-invoice"></i> Pedidos</a>
@@ -31,14 +36,22 @@
         </div>
         <div class="menuItem">
           <a routerLink="users"><i class="fa-solid fa-users"></i> Usuarios</a>
+          <div class="submenu">
+            <div class="menuItem">
+              <a routerLink="register-user"><i class="fa-solid fa-user-plus"></i> Registrar</a>
+            </div>
+          </div>
         </div>
         <div class="menuItem">
           <a routerLink="products"><i class="fa-solid fa-power-off"></i> Salir</a>
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-12 {{isHidden ? 'col-md-10': 'col-md-10'}}" id="contentContainer">
-      <router-outlet></router-outlet>
+    <div class="col-xs-12 col-sm-12 col-md-12" id="contentContainer">
+      <router-outlet (activate)="hideShowMenu()"></router-outlet>
     </div>
   </div>
 </div>
+<button class="btn btn-primary btn-open-menu" (click)="hideShowMenu()">
+  <i class="fa-solid fa-bars"></i>
+</button>
