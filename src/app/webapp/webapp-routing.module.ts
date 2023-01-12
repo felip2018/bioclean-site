@@ -23,6 +23,10 @@ const routes: Routes = [
       component: ProductsRegisterComponent
     },
     {
+      path: 'edit-product',
+      component: ProductsRegisterComponent
+    },
+    {
       path: 'users',
       component: UsersComponent
     },

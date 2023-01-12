@@ -1,4 +1,9 @@
-<app-header [title]="'Registrar producto'" [showButton]="false"></app-header>
+<app-header
+  [title]="title"
+  [showButton]="false"
+  [backUrl]="'webapp/products'"
+  [showBackButton]="true"
+></app-header>
 <hr>
 <div class="row justify-content-center" style="padding: 10px;">
   <div class="col-xs-12 col-sm-12 col-md-6" style="padding:10px">
@@ -58,10 +63,20 @@
             <input class="form-control" type="number" formControlName="cantidad">
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4">
+            <label>Ventas</label>
+            <input class="form-control" type="number" formControlName="ventas" (blur)="quantityValidation()">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <label>Cantidad real</label>
+            <input class="form-control" type="number" formControlName="cantidad_real">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
             <label>Stock mínimo</label>
             <input class="form-control" type="number" formControlName="stock_minimo">
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-4">
+          <div class="col-xs-12 col-sm-12 col-md-6">
             <label>Stock máximo</label>
             <input class="form-control" type="number" formControlName="stock_maximo">
           </div>

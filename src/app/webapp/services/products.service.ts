@@ -21,4 +21,8 @@ export class ProductsService {
   save(body: IProductToSave) {
     return this.http.post(`${environment.api}/save-product`, body);
   }
+
+  update(body: IProductToSave) {
+    return this.http.put(`${environment.api}/update-product`, body);
+  }
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import { SS_IS_EDIT_PRODUCT, SS_PRODUCT_TO_EDIT } from '../../config/storageKeys';
 import { IProduct } from '../../models/iproduct';
 import { ProductsService } from '../../services/products.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-products',
@@ -15,8 +17,8 @@ export class ProductsComponent implements OnInit {
   productsList: IProduct[];
 
   constructor(private router: Router,
-    private route: ActivatedRoute,
-    private productsService: ProductsService) {
+    private productsService: ProductsService,
+    private storageService: StorageService) {
     this.products = [];
     this.productsList = [];
   }
@@ -39,12 +41,14 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
-  editProduct(id: number) {
-    console.log(`editar producto id:: ${id}`);
+  editProduct(element: IProduct) {
+    this.storageService.setItem(SS_PRODUCT_TO_EDIT, JSON.stringify(element));
+    this.storageService.setItem(SS_IS_EDIT_PRODUCT, 'si');
+    this.router.navigate(['webapp/edit-product']);
   }
 
   showRegisterForm() {
-    console.log('products.showRegisterForm()');
-    this.router.navigate(['register-product'], {relativeTo: this.route.firstChild});
+    this.storageService.setItem(SS_IS_EDIT_PRODUCT, 'no');
+    this.router.navigate(['webapp/register-product']);
   }
 }

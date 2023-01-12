@@ -7,7 +7,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class TemplateComponent implements OnInit {
 
-  isHidden = true;
+  isHidden = false;
   showCloseMenu = false;
   showOpenMenu = false;
 
@@ -35,7 +35,7 @@ export class TemplateComponent implements OnInit {
     }
   }
 
-  hideShowMenu() {
-    this.isHidden = !this.isHidden;
+  hideShowMenu(status: boolean) {
+    this.isHidden = status;
   }
 }

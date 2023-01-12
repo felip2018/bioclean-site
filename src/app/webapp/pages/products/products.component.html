@@ -1,4 +1,9 @@
-<app-header [title]="'Productos'" [showButton]="false"></app-header>
+<app-header
+  [title]="'Productos'"
+  [showButton]="true"
+  (showRegisterFormEvent)="showRegisterForm()"
+  [showBackButton]="false"
+  ></app-header>
 <hr>
 <div class="row justify-content-center">
   <div class="col-xs-12 col-sm-12 col-md-10">
@@ -19,7 +24,7 @@
           <i class="fa-solid fa-check"></i>
         </button>
 
-        <button class="btn btn-info" style="float:right" title="Editar" (click)="editProduct(element.id)">
+        <button class="btn btn-info" style="float:right" title="Editar" (click)="editProduct(element)">
           <i class="fa-solid fa-pen"></i>
         </button>
       </div>

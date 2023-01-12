@@ -1,4 +1,5 @@
 export interface IProductToSave {
+  id?:number;
   codigo: string;
   categoria_id: number;
   tipo_producto_id: number;

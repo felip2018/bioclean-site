@@ -78,7 +78,6 @@ export class UsersComponent implements OnInit {
 
 
   showRegisterForm() {
-    console.log('users.showRegisterForm()');
-
+    this.router.navigate(['webapp/register-user']);
   }
 }
