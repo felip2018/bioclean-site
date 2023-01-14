@@ -2,7 +2,7 @@
   <button *ngIf="showBackButton" class="btn btn-info" title="Volver" (click)="openBackUrl()" style="margin-right: 10px;">
     <i class="fa-solid fa-arrow-left"></i>
   </button>
-  <strong>{{title}}</strong>
+  <label>{{title}}</label>
   <button *ngIf="showButton" class="btn btn-info buttonForm" title="Nuevo" (click)="showRegisterForm()">
     <i class="fa {{showForm ? 'fa-xmark' : 'fa-plus'}}"></i>
   </button>

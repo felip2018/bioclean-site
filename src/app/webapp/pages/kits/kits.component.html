@@ -1,0 +1,33 @@
+<app-header
+  [title]="'Kits'"
+  [showButton]="true"
+  (showRegisterFormEvent)="showRegisterForm()"
+  [showBackButton]="false"
+  ></app-header>
+<hr>
+<div class="row justify-content-center">
+  <div class="col-xs-12 col-sm-12 col-md-6">
+    <div class="row kitInfo" *ngFor="let kit of kits">
+      <div class="col-xs-12 col-sm-12 col-md-2">
+        <img src="/assets/img/no-image.png" class="card-img-top" alt="no-image.png">
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-7">
+        <label>{{kit.nombre}}</label><br>
+        <label>{{kit.precio | currency: 'COP'}}</label>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-3">
+        <button *ngIf="kit.estado_registro === 'Activo'" class="btn btn-danger" style="float:right" title="Eliminar" (click)="updateStatus(kit.id, 'Inactivo')">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+
+        <button *ngIf="kit.estado_registro === 'Inactivo'" class="btn btn-success" style="float:right" title="Activar" (click)="updateStatus(kit.id, 'Activo')">
+          <i class="fa-solid fa-check"></i>
+        </button>
+
+        <button class="btn btn-info" style="float:right" title="Editar" (click)="editProduct(kit.id)">
+          <i class="fa-solid fa-pen"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

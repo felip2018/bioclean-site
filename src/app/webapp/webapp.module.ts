@@ -19,6 +19,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './components/loader/loader.component';
 import { UsersRegisterComponent } from './pages/users-register/users-register.component';
 import { ProductsRegisterComponent } from './pages/products-register/products-register.component';
+import { OrdersRegisterComponent } from './pages/orders-register/orders-register.component';
+import { KitsComponent } from './pages/kits/kits.component';
+import { KitsRegisterComponent } from './pages/kits-register/kits-register.component';
 
 
 
@@ -39,7 +42,10 @@ import { ProductsRegisterComponent } from './pages/products-register/products-re
     CategoriesComponent,
     LoaderComponent,
     UsersRegisterComponent,
-    ProductsRegisterComponent
+    ProductsRegisterComponent,
+    OrdersRegisterComponent,
+    KitsComponent,
+    KitsRegisterComponent
   ],
   imports: [
     CommonModule,

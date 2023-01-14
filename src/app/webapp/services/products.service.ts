@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { IKit } from '../models/ikit';
+import { IKitToSave } from '../models/ikittosave';
 import { IProductToSave } from '../models/iproducttosave';
 
 @Injectable({
@@ -14,8 +16,16 @@ export class ProductsService {
     return this.http.post(`${environment.api}/get-products`, body);
   }
 
+  getAllKits() {
+    return this.http.get<IKit[]>(`${environment.api}/get-kits`);
+  }
+
   updateStatus(body: {id: number; estado: string;}) {
     return this.http.put(`${environment.api}/update-product-status`, body);
+  }
+
+  updateKitStatus(body: {id: number; estado: string;}) {
+    return this.http.put(`${environment.api}/update-kit-status`, body);
   }
 
   save(body: IProductToSave) {
@@ -24,5 +34,17 @@ export class ProductsService {
 
   update(body: IProductToSave) {
     return this.http.put(`${environment.api}/update-product`, body);
+  }
+
+  saveKit(body: IKitToSave) {
+    return this.http.post(`${environment.api}/save-kit`, body);
+  }
+
+  getKitInfo(id: number) {
+    return this.http.get<IKitToSave>(`${environment.api}/get-kit-by-id/${id}`);
+  }
+
+  updateKit(body: IKitToSave) {
+    return this.http.put(`${environment.api}/update-kit`, body);
   }
 }

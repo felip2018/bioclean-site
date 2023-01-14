@@ -1,1 +1,6 @@
-<app-header [title]="'Pedidos'"></app-header>
+<app-header
+  [title]="'Pedidos'"
+  [showButton]="true"
+  (showRegisterFormEvent)="showRegisterForm()"
+  [showBackButton]="false"
+  ></app-header>

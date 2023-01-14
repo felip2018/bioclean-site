@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { ConfigurationComponent } from "./pages/configuration/configuration.component";
 import { HomeComponent } from "./pages/home/home.component";
+import { KitsRegisterComponent } from "./pages/kits-register/kits-register.component";
+import { KitsComponent } from "./pages/kits/kits.component";
 import { OrdersComponent } from "./pages/orders/orders.component";
 import { ProductsRegisterComponent } from "./pages/products-register/products-register.component";
 import { ProductsComponent } from "./pages/products/products.component";
@@ -21,6 +23,14 @@ const routes: Routes = [
     {
       path: 'register-product',
       component: ProductsRegisterComponent
+    },
+    {
+      path: 'kits',
+      component: KitsComponent
+    },
+    {
+      path: 'register-kit',
+      component: KitsRegisterComponent
     },
     {
       path: 'edit-product',

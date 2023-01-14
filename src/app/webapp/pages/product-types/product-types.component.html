@@ -13,9 +13,9 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-12" style="padding: 10px;" *ngFor="let element of productTypesList">
-    <div style="background-color: #FFFFFF;border-radius: 5px;padding: 10px;">
+<div class="row" *ngFor="let element of productTypesList" style="margin-bottom: 10px;">
+  <div class="col-12">
+    <div style="background-color: #FFFFFF;border-radius: 5px;">
       <label>{{element.nombre}}</label>
 
       <button *ngIf="element.estado == 'Activo'" class="btn btn-danger" style="float:right" title="Eliminar"
