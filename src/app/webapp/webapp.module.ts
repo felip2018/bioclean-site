@@ -15,13 +15,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductTypesComponent } from './pages/product-types/product-types.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './components/loader/loader.component';
 import { UsersRegisterComponent } from './pages/users-register/users-register.component';
 import { ProductsRegisterComponent } from './pages/products-register/products-register.component';
-import { OrdersRegisterComponent } from './pages/orders-register/orders-register.component';
 import { KitsComponent } from './pages/kits/kits.component';
 import { KitsRegisterComponent } from './pages/kits-register/kits-register.component';
+import { OrdersRegisterComponent } from './pages/orders-register/orders-register.component';
+import { OrdersRegisterProductsComponent } from './pages/orders-register-products/order-register-products.component';
 
 
 
@@ -45,13 +46,15 @@ import { KitsRegisterComponent } from './pages/kits-register/kits-register.compo
     ProductsRegisterComponent,
     OrdersRegisterComponent,
     KitsComponent,
-    KitsRegisterComponent
+    KitsRegisterComponent,
+    OrdersRegisterProductsComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     WebappRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class WebappModule { }

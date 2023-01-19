@@ -5,6 +5,7 @@ import { ICity } from '../models/icity';
 import { ICountry } from '../models/icountry';
 import { IDocumentType } from '../models/idocumenttype';
 import { IGeneric } from '../models/igeneric';
+import { ILocation } from '../models/ilocation';
 import { IProfile } from '../models/iprofile';
 import { IRegion } from '../models/iregion';
 import { IUnit } from '../models/iunit';
@@ -34,5 +35,9 @@ export class UtilsService {
 
   getCitiesByRegion(region_id: number) {
     return this.http.get<ICity[]>(`${environment.api}/get-cities/${region_id}`);
+  }
+
+  getLocationsByCity(ciudad_id: number) {
+    return this.http.get<ILocation[]>(`${environment.api}/get-locations/${ciudad_id}`);
   }
 }

@@ -1,1 +1,131 @@
-<p>orders-register works!</p>
+<app-header
+  [title]="'Registrar pedido (Información del cliente)'"
+  [showButton]="false"
+  [showBackButton]="true"
+  [backUrl]="'webapp/orders'"
+  ></app-header>
+<hr>
+<div class="row justify-content-center" style="padding: 10px;">
+  <div class="col-xs-12 col-sm-12 col-md-8" style="padding:10px">
+    <div class="row orderRegister">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-4">
+            <select class="form-control" [(ngModel)]="tipoDocumento">
+              <option value="">Documento</option>
+              <option *ngFor="let type of documentTypes" value="{{type.id}}">{{type.nombre}}</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <input type="text" class="form-control" placeholder="Identificación del cliente" [(ngModel)]="numeroDocumento">
+          </div>
+          <div class="col-2">
+            <button type="button" class="btn btn-info btn-block" (click)="searchCustomer()">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <br>
+          </div>
+        </div>
+      </div>
+      <form class="col-12" (submit)="submit()" [formGroup]="applicationForm">
+        <div class="row">
+          <div class="col-12" style="text-align: center;">
+            Información del cliente
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Tipo de documento</label>
+            <select class="form-control" formControlName="tipo_documento_id">
+              <option value="">-Seleccione</option>
+              <option *ngFor="let type of documentTypes" value="{{type.id}}">{{type.nombre}}</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Número de documento</label>
+            <input type="number" class="form-control" formControlName="numero_documento">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Nombres</label>
+            <input type="text" class="form-control" formControlName="nombres" (input)="formatText('nombres')">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Apellidos</label>
+            <input type="text" class="form-control" formControlName="apellidos" (input)="formatText('apellidos')">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Correo electrónico</label>
+            <input type="text" class="form-control" formControlName="correo_electronico" (input)="formatText('correo_electronico')">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Teléfono</label>
+            <input type="text" class="form-control" formControlName="telefono">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>País</label>
+            <select class="form-control" formControlName="pais_id" (change)="searchRegions()">
+              <option value="">- Seleccione</option>
+              <option *ngFor="let country of countries" value="{{country.id}}">{{country.nombre}}</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Departamento</label>
+            <select class="form-control" formControlName="region_id" (change)="searchCities()">
+              <option value="">- Seleccione</option>
+              <option *ngFor="let region of regions" value="{{region.id}}">{{region.nombre}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Ciudad</label>
+            <select class="form-control" formControlName="ciudad_id" (change)="searchLocations()">
+              <option value="">- Seleccione</option>
+              <option *ngFor="let city of cities" value="{{city.id}}">{{city.nombre}}</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Localidad</label>
+            <select class="form-control" formControlName="localidad_id">
+              <option value="">- Seleccione</option>
+              <option *ngFor="let location of locations" value="{{location.id}}">{{location.nombre}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label>Dirección</label>
+            <input type="text" class="form-control" formControlName="direccion" (input)="formatText('direccion')">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label>Barrio</label>
+            <input type="text" class="form-control" formControlName="barrio" (input)="formatText('barrio')">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <hr>
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!applicationForm.valid">
+              Continuar <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-loader [showLoader]="showLoader"></app-loader>

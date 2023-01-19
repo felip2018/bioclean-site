@@ -4,6 +4,8 @@ import { ConfigurationComponent } from "./pages/configuration/configuration.comp
 import { HomeComponent } from "./pages/home/home.component";
 import { KitsRegisterComponent } from "./pages/kits-register/kits-register.component";
 import { KitsComponent } from "./pages/kits/kits.component";
+import { OrdersRegisterProductsComponent } from "./pages/orders-register-products/order-register-products.component";
+import { OrdersRegisterComponent } from "./pages/orders-register/orders-register.component";
 import { OrdersComponent } from "./pages/orders/orders.component";
 import { ProductsRegisterComponent } from "./pages/products-register/products-register.component";
 import { ProductsComponent } from "./pages/products/products.component";
@@ -55,6 +57,14 @@ const routes: Routes = [
     {
       path: 'orders',
       component: OrdersComponent
+    },
+    {
+      path: 'register-order-client',
+      component: OrdersRegisterComponent
+    },
+    {
+      path: 'register-order-products',
+      component: OrdersRegisterProductsComponent
     },
     {
       path: '',
