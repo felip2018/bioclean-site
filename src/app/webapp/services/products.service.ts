@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { IKit } from '../models/ikit';
 import { IKitToSave } from '../models/ikittosave';
+import { IKitWithProducts } from '../models/ikitwithproducts';
 import { IProductToSave } from '../models/iproducttosave';
 
 @Injectable({
@@ -18,6 +19,10 @@ export class ProductsService {
 
   getAllKits() {
     return this.http.get<IKit[]>(`${environment.api}/get-kits`);
+  }
+
+  getKitsAndProducts() {
+    return this.http.get<IKitWithProducts[]>(`${environment.api}/get-kits-and-products`);
   }
 
   updateStatus(body: {id: number; estado: string;}) {

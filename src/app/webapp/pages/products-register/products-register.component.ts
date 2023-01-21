@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
 import { SS_IS_EDIT_PRODUCT, SS_PRODUCT_TO_EDIT } from '../../config/storageKeys';
+import { IGeneric } from '../../models/igeneric';
 import { IProductToSave } from '../../models/iproducttosave';
 import { CategoriesService } from '../../services/categories.service';
 import { FragancesService } from '../../services/fragances.service';
@@ -10,6 +11,7 @@ import { ProductTypesService } from '../../services/product-types.service';
 import { ProductsService } from '../../services/products.service';
 import { StorageService } from '../../services/storage.service';
 import { UnitsService } from '../../services/units.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-products-register',
@@ -19,11 +21,12 @@ import { UnitsService } from '../../services/units.service';
 export class ProductsRegisterComponent implements OnInit {
 
   applicationForm: FormGroup;
-  showLoader = false;
+  showLoader: boolean;
   categories: any[];
   product_types: any[];
   units: any[];
   fragances: any[];
+  containers: IGeneric[];
   title: string;
   isEdit = false;
 
@@ -33,6 +36,7 @@ export class ProductsRegisterComponent implements OnInit {
     private unitsService: UnitsService,
     private fragancesService: FragancesService,
     private productService: ProductsService,
+    private utilsService: UtilsService,
     private storageService: StorageService) {
 
     this.title = '';
@@ -40,12 +44,17 @@ export class ProductsRegisterComponent implements OnInit {
     this.product_types = [];
     this.units = [];
     this.fragances = [];
+    this.containers = [];
+
+    this.showLoader = true;
 
     this.applicationForm = this.formBuilder.group({
       id: [''],
       categoria_id: ['', Validators.required],
       codigo: ['', Validators.required],
       tipo_producto_id: ['', Validators.required],
+      envase_id: [''],
+      valor_unidad: ['', Validators.required],
       unidad_medida_id: ['', Validators.required],
       fragancia_id: [''],
       precio_publico: ['', Validators.required],
@@ -69,12 +78,14 @@ export class ProductsRegisterComponent implements OnInit {
         lastValueFrom(this.categoriesService.getAll()),
         lastValueFrom(this.productTypesService.getAll()),
         lastValueFrom(this.unitsService.getAll()),
-        lastValueFrom(this.fragancesService.getAll())
+        lastValueFrom(this.fragancesService.getAll()),
+        lastValueFrom(this.utilsService.getContainers())
       ]);
       this.categories = result[0];
       this.product_types = result[1];
       this.units = result[2];
       this.fragances = result[3];
+      this.containers = result[4];
     } catch (err) {
       console.error(err);
     }
@@ -90,6 +101,8 @@ export class ProductsRegisterComponent implements OnInit {
       this.applicationForm.controls['categoria_id'].setValue(productInfo.categoria_id);
       this.applicationForm.controls['codigo'].setValue(productInfo.codigo);
       this.applicationForm.controls['tipo_producto_id'].setValue(productInfo.tipo_producto_id);
+      this.applicationForm.controls['envase_id'].setValue(productInfo.envase_id);
+      this.applicationForm.controls['valor_unidad'].setValue(productInfo.valor_unidad);
       this.applicationForm.controls['unidad_medida_id'].setValue(productInfo.unidad_medida_id);
       this.applicationForm.controls['fragancia_id'].setValue(productInfo.fragancia_id);
       this.applicationForm.controls['precio_publico'].setValue(productInfo.precio_publico);
@@ -102,6 +115,7 @@ export class ProductsRegisterComponent implements OnInit {
     } else {
       this.title = 'Registrar producto';
     }
+    this.showLoader = false;
   }
 
   quantityValidation() {

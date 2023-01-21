@@ -5,6 +5,8 @@ export interface IProduct {
   categoria: string;
   tipo_producto_id: number;
   tipo_producto: string;
+  envase_id: number;
+  envase: string;
   valor_unidad: number;
   unidad_medida_id: number;
   unidad_medida: string;

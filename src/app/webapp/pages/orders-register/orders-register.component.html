@@ -96,7 +96,7 @@
             </select>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6">
-            <label>Localidad</label>
+            <label>Localidad (opcional)</label>
             <select class="form-control" formControlName="localidad_id">
               <option value="">- Seleccione</option>
               <option *ngFor="let location of locations" value="{{location.id}}">{{location.nombre}}</option>

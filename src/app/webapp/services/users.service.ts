@@ -23,4 +23,8 @@ export class UsersService {
   updateStatus(body: {id: number, estado: string}) {
     return this.http.put(`${environment.api}/update-user-status`, body)
   }
+
+  getPersonByDocument(body: {tipo_documento_id: number, numero_documento: number}) {
+    return this.http.post(`${environment.api}/search-customer`, body);
+  }
 }

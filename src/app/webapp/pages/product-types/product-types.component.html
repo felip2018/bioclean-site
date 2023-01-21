@@ -4,7 +4,7 @@
     <div *ngIf="showForm" style="background-color: #FFFFFF;border-radius: 5px;padding: 10px;">
       <form (submit)="submit()" [formGroup]="applicationForm">
         <label>Ingrese el nombre</label>
-        <input type="text" class="form-control" formControlName="nombre">
+        <input type="text" class="form-control" formControlName="nombre" (input)="formatText('nombre')">
         <hr>
         <button type="submit" class="btn btn-primary" [disabled]="!applicationForm.valid">
           <i class="fa-solid fa-floppy-disk"></i>

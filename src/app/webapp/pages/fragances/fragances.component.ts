@@ -49,6 +49,11 @@ export class FragancesComponent implements OnInit {
     }
   }
 
+  formatText(field: string) {
+    const value = this.applicationForm.controls[field].value;
+    this.applicationForm.controls[field].setValue(value ? (value as string).toUpperCase() : '');
+  }
+
   async submit() {
     try {
       if (!this.isUpdate){

@@ -40,4 +40,8 @@ export class UtilsService {
   getLocationsByCity(ciudad_id: number) {
     return this.http.get<ILocation[]>(`${environment.api}/get-locations/${ciudad_id}`);
   }
+
+  getContainers() {
+    return this.http.get<IGeneric[]>(`${environment.api}/get-containers`);
+  }
 }

@@ -8,23 +8,24 @@
 <div class="row justify-content-center">
   <div class="col-xs-12 col-sm-12 col-md-10">
     <div class="row productInfo" *ngFor="let element of productsList">
-      <div class="col-xs-12 col-sm-12 col-md-1">
+      <div class="col-2">
         <img src="/assets/img/no-image.png" class="card-img-top" alt="no-image.png">
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-9">
-        <label>{{element.tipo_producto}} {{element.fragancia}} x {{element.unidad_medida}}</label><br>
+      <div class="col-8">
+        <p style="text-align: left;">{{element.tipo_producto}} <br>
+        {{element.fragancia}} {{element.envase}} {{element.valor_unidad}} {{element.abreviatura}}</p>
         <label>Código: {{element.codigo}}</label>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-2">
-        <button *ngIf="element.estado === 'Activo'" class="btn btn-danger" style="float:right" title="Eliminar" (click)="updateStatus(element.id, 'Inactivo')">
+      <div class="col-2">
+        <button *ngIf="element.estado === 'Activo'" class="btn btn-danger m-1" style="float:right" title="Eliminar" (click)="updateStatus(element.id, 'Inactivo')">
           <i class="fa-solid fa-trash"></i>
         </button>
 
-        <button *ngIf="element.estado === 'Inactivo'" class="btn btn-success" style="float:right" title="Activar" (click)="updateStatus(element.id, 'Activo')">
+        <button *ngIf="element.estado === 'Inactivo'" class="btn btn-success m-1" style="float:right" title="Activar" (click)="updateStatus(element.id, 'Activo')">
           <i class="fa-solid fa-check"></i>
         </button>
 
-        <button class="btn btn-info" style="float:right" title="Editar" (click)="editProduct(element)">
+        <button class="btn btn-info m-1" style="float:right" title="Editar" (click)="editProduct(element)">
           <i class="fa-solid fa-pen"></i>
         </button>
       </div>

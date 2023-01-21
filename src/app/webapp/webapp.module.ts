@@ -23,6 +23,7 @@ import { KitsComponent } from './pages/kits/kits.component';
 import { KitsRegisterComponent } from './pages/kits-register/kits-register.component';
 import { OrdersRegisterComponent } from './pages/orders-register/orders-register.component';
 import { OrdersRegisterProductsComponent } from './pages/orders-register-products/order-register-products.component';
+import { ContainersComponent } from './pages/containers/containers.component';
 
 
 
@@ -47,7 +48,8 @@ import { OrdersRegisterProductsComponent } from './pages/orders-register-product
     OrdersRegisterComponent,
     KitsComponent,
     KitsRegisterComponent,
-    OrdersRegisterProductsComponent
+    OrdersRegisterProductsComponent,
+    ContainersComponent
   ],
   imports: [
     CommonModule,

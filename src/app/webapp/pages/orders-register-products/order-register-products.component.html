@@ -6,13 +6,89 @@
   ></app-header>
 <hr>
 <div class="row justify-content-center" style="padding: 10px;">
-  <div class="col-xs-12 col-sm-12 col-md-8" style="padding:10px">
+  <div class="col-xs-12 col-sm-12 col-md-10" style="padding:10px">
     <div class="row orderRegister">
+      <div class="col-12" style="text-align: center;">
+        Productos
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <button type="button" class="btn btn-info m-2" (click)="showForm('kit')">
+            <i class="fa fa-plus"></i> Kit
+          </button>
+          <button type="button" class="btn btn-info m-2" (click)="showForm('product')">
+            <i class="fa fa-plus"></i> Producto
+          </button>
+        </div>
+      </div>
+      <div class="col-12">
+        <div *ngIf="showKitForm" class="row">
+          <div class="col-8">
+            <select class="form-control" [(ngModel)]="kit">
+              <option value="">- Seleccione el kit</option>
+              <option *ngFor="let item of KitsArray" value="{{item.kit.id}}">{{item.kit.nombre}}</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <input type="number" class="form-control" [(ngModel)]="kit_number">
+          </div>
+          <div class="col-2">
+            <button class="btn btn-info btn-block" (click)="addKit()"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <div *ngIf="showProductForm" class="row">
+
+        </div>
+      </div>
       <form class="col-12" (submit)="submit()" [formGroup]="applicationForm">
         <div class="row">
-          <div class="col-12" style="text-align: center;">
-            Productos
+          <div class="col-12">
             <hr>
+            <label>Listado</label>
+          </div>
+        </div>
+        <div class="row" *ngFor="let product of productsList; let i = index" formArrayName="productos">
+          <div class="col-12 productItem" formGroupName="{{i}}">
+            <div class="row">
+              <div class="col-12">
+                {{product.kit_id}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-3">
+                <label for="tipo_producto_id_{{i}}">Tipo de producto</label>
+                <select class="form-control" id="tipo_producto_id_{{i}}" formControlName="tipo_producto_id">
+                  <option value="">- Seleccione</option>
+                  <option *ngFor="let item of productTypesList" value="{{item.id}}">{{item.nombre}}</option>
+                </select>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3">
+                <label for="unidad_medida_id_{{i}}">Unidad de medida</label>
+                <select class="form-control" id="unidad_medida_id_{{i}}" formControlName="unidad_medida_id">
+                  <option value="">- Seleccione</option>
+                  <option *ngFor="let item of unitsList" value="{{item.id}}">{{item.nombre}}</option>
+                </select>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3">
+                <label for="fragancia_id_{{i}}">Fragancia</label>
+                <select class="form-control" id="fragancia_id_{{i}}" formControlName="fragancia_id">
+                  <option value="">- Seleccione</option>
+                  <option *ngFor="let item of fragancesList" value="{{item.id}}">{{item.nombre}}</option>
+                </select>
+              </div>
+              <div class="col-12 col-sm-12 col-md-2">
+                <br>
+                <button class="btn btn-danger" (click)="removeProduct(i)" title="Eliminar" style="float: right;">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label>Fecha de entrega</label>
+            <input type="date" class="form-control" formControlName="fecha_entrega" [min]="today">
           </div>
         </div>
         <div class="row">

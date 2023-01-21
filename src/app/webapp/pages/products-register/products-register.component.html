@@ -31,6 +31,19 @@
             </select>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Envase</label>
+            <select class="form-control" formControlName="envase_id">
+              <option value="">-Seleccione</option>
+              <option *ngFor="let item of containers" value="{{item.id}}">{{item.nombre}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Valor de unidad</label>
+            <input type="number" class="form-control" formControlName="valor_unidad">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
             <label>Unidad de medida</label>
             <select class="form-control" formControlName="unidad_medida_id">
               <option value="">-Seleccione</option>
