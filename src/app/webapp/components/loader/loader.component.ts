@@ -13,11 +13,11 @@ export class LoaderComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log('LoaderComponent.ngOnInit().showLoader > ', this.showLoader);
+    // console.log('LoaderComponent.ngOnInit().showLoader > ', this.showLoader);
   }
 
   ngAfterViewInit(): void {
-    console.log('LoaderComponent.ngAfterViewInit().showLoader > ', this.showLoader);
+    // console.log('LoaderComponent.ngAfterViewInit().showLoader > ', this.showLoader);
   }
 
 }

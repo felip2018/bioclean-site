@@ -6,7 +6,7 @@
   ></app-header>
 <hr>
 <div class="row justify-content-center" style="padding: 10px;">
-  <div class="col-xs-12 col-sm-12 col-md-6" style="padding:10px">
+  <div class="col-xs-12 col-sm-12 col-md-10" style="padding:10px">
     <div class="row kitRegister">
       <form class="col-12" (submit)="submit()" [formGroup]="applicationForm">
         <div class="row">
@@ -40,23 +40,27 @@
           </div>
           <div class="col-12" *ngFor="let item of productsKit; let i = index" formArrayName="productos">
             <div class="row productItem" formGroupName="{{i}}">
-              <div class="col-xs-12 col-sm-12 col-md-5">
+              <div class="col-xs-12 col-sm-12 col-md-4">
                 <label for="tipo_producto_id_{{i}}">Tipo de producto</label>
                 <select class="form-control" id="tipo_producto_id_{{i}}" formControlName="tipo_producto_id">
                   <option value="">- Seleccione</option>
                   <option *ngFor="let item of productTypes" value="{{item.id}}">{{item.nombre}}</option>
                 </select>
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-5">
+              <div class="col-xs-12 col-sm-12 col-md-4">
+                <label for="valor_unidad_{{i}}">Valor unidad</label>
+                <input type="number" class="form-control" id="valor_unidad_{{i}}" formControlName="valor_unidad">
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3">
                 <label for="unidad_medida_id_{{i}}">Unidad de medida</label>
                 <select class="form-control" id="unidad_medida_id_{{i}}" formControlName="unidad_medida_id">
                   <option value="">- Seleccione</option>
                   <option *ngFor="let item of unitTypes" value="{{item.id}}">{{item.nombre}}</option>
                 </select>
               </div>
-              <div class="col-12 col-sm-12 col-md-2">
+              <div class="col-12 col-sm-12 col-md-1">
                 <br>
-                <button class="btn btn-danger" (click)="removeProduct(i)" title="Eliminar" style="float: right;">
+                <button type="button" class="btn btn-danger btn-block" (click)="removeProduct(i)" title="Eliminar"  >
                   <i class="fa-solid fa-trash"></i>
                 </button>
               </div>

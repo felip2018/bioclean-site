@@ -13,7 +13,7 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(body: {type: string;category_id?: number;product_code?:number;}) {
+  getAll(body: {status?:string;}) {
     return this.http.post(`${environment.api}/get-products`, body);
   }
 
@@ -21,8 +21,8 @@ export class ProductsService {
     return this.http.get<IKit[]>(`${environment.api}/get-kits`);
   }
 
-  getKitsAndProducts() {
-    return this.http.get<IKitWithProducts[]>(`${environment.api}/get-kits-and-products`);
+  getKitsAndProducts(body: {status?: string}) {
+    return this.http.post<IKitWithProducts[]>(`${environment.api}/get-kits-and-products`, body);
   }
 
   updateStatus(body: {id: number; estado: string;}) {

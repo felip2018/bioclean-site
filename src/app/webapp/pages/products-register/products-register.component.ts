@@ -57,6 +57,7 @@ export class ProductsRegisterComponent implements OnInit {
       valor_unidad: ['', Validators.required],
       unidad_medida_id: ['', Validators.required],
       fragancia_id: [''],
+      precio_kit: ['', Validators.required],
       precio_publico: ['', Validators.required],
       precio_distribuidor: ['', Validators.required],
       cantidad: ['', Validators.required],

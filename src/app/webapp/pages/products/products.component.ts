@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
 
   async getProducts() {
     try {
-      this.products = await lastValueFrom(this.productsService.getAll({type: 'all'})) as IProduct[];
+      this.products = await lastValueFrom(this.productsService.getAll({})) as IProduct[];
       this.productsList = this.products;
     } catch (err) {
       console.error(err);

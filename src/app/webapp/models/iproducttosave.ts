@@ -5,6 +5,7 @@ export interface IProductToSave {
   tipo_producto_id: number;
   unidad_medida_id: number;
   fragancia_id: number;
+  precio_kit: number;
   precio_publico: number;
   precio_distribuidor: number;
   cantidad: number;

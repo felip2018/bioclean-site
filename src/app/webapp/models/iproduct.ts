@@ -13,6 +13,7 @@ export interface IProduct {
   abreviatura: string;
   fragancia_id: number;
   fragancia: string;
+  precio_kit: number;
   precio_publico: number;
   precio_distribuidor: number;
   cantidad: number;

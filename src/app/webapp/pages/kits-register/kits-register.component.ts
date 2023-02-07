@@ -83,6 +83,7 @@ export class KitsRegisterComponent implements OnInit {
       kitInfo.products.map((product) => {
         (this.applicationForm.controls['productos'] as FormArray).push(this.formBuilder.group({
           tipo_producto_id: [product.tipo_producto_id, Validators.required],
+          valor_unidad:     [product.valor_unidad, Validators.required],
           unidad_medida_id: [product.unidad_medida_id, Validators.required]
         }));
         this.productsKit = this.applicationForm.controls['productos'].value;
@@ -98,6 +99,7 @@ export class KitsRegisterComponent implements OnInit {
     (this.applicationForm.controls['productos'] as FormArray).push(this.formBuilder.group({
       id: [''],
       tipo_producto_id: ['', Validators.required],
+      valor_unidad: ['', Validators.required],
       unidad_medida_id: ['', Validators.required]
     }));
     this.productsKit = this.applicationForm.controls['productos'].value;

@@ -6,6 +6,7 @@ import { IGeneric } from '../../models/igeneric';
 import { IKit } from '../../models/ikit';
 import { IKitWithProducts } from '../../models/ikitwithproducts';
 import { IOrderToSave } from '../../models/iordertosave';
+import { IProduct } from '../../models/iproduct';
 import { IUnit } from '../../models/iunit';
 import { FragancesService } from '../../services/fragances.service';
 import { OrdersService } from '../../services/orders.service';
@@ -20,14 +21,20 @@ import { UtilsService } from '../../services/utils.service';
   styleUrls: ['./order-register-products.component.css']
 })
 export class OrdersRegisterProductsComponent implements OnInit {
-
   applicationForm: FormGroup;
-  showLoader: boolean;
-  productsArray: any[];
-  productsList: any[];
-  kit: string = '';
+
+  productsDb: IProduct[];
+  filteredProductsList: IProduct[];
+  productsList: any[] = [];
+
+  product_type_id: number = 0;
+
+  kitsDb: IKitWithProducts[] = [];
+  filteredKit: any = [];
+  kit_id: string = '';
   kit_number: number = 1;
-  KitsArray: IKitWithProducts[];
+
+  showLoader: boolean;
   kitsList: IKit[];
   productTypesList: IGeneric[] = [];
   unitsList: IUnit[] = [];
@@ -38,6 +45,7 @@ export class OrdersRegisterProductsComponent implements OnInit {
 
   today: string = '';
 
+
   constructor(private formBuilder: FormBuilder,
     private productsService: ProductsService,
     private ordersService: OrdersService,
@@ -45,28 +53,30 @@ export class OrdersRegisterProductsComponent implements OnInit {
     private unitsService: UnitsService,
     private fragancesService: FragancesService) {
 
-      this.showLoader = false;
-      this.productsArray = [];
-      this.productsList = [];
-      this.KitsArray = [];
-      this.kitsList = [];
-      this.showKitForm = false;
-      this.showProductForm = false;
+    this.productsDb = [];
+    this.showLoader = false;
+    this.filteredProductsList = [];
 
-      let date = new Date();
-      date.setDate(date.getDate()+2);
-      const month = date.getMonth()+1;
-      const day = date.getDate();
-      this.today = `${date.getFullYear()}-${(month<10)?'0'+month:month}-${(day<10)?'0'+day:day}`;
+    this.kitsList = [];
+    this.showKitForm = false;
+    this.showProductForm = false;
 
-      this.applicationForm = this.formBuilder.group({
-        usuario_id: ['', Validators.required],
-        total: ['', Validators.required],
-        fecha_entrega: ['', Validators.required],
-        tipo: ['', Validators.required],
-        estado_pedido: ['', Validators.required],
-        productos: this.formBuilder.array([])
-      });
+    let date = new Date();
+    date.setDate(date.getDate()+2);
+    const month = date.getMonth()+1;
+    const day = date.getDate();
+    this.today = `${date.getFullYear()}-${(month<10)?'0'+month:month}-${(day<10)?'0'+day:day}`;
+
+    this.applicationForm = this.formBuilder.group({
+      usuario_id: ['', Validators.required],
+      total: ['', Validators.required],
+      fecha_entrega: ['', Validators.required],
+      tipo: ['Pedido', Validators.required],
+      estado_pedido: ['Pendiente', Validators.required],
+      productos: this.formBuilder.array([])
+    });
+
+    this.applicationForm.valueChanges.subscribe(data => console.log('form data > ', data));
   }
 
   ngOnInit(): void {
@@ -76,16 +86,18 @@ export class OrdersRegisterProductsComponent implements OnInit {
   async getLists() {
     try {
       const result = await Promise.all([
-        lastValueFrom(this.productsService.getKitsAndProducts()),
+        lastValueFrom(this.productsService.getKitsAndProducts({status: 'Activo'})),
         lastValueFrom(this.productTypesService.getAll()),
         lastValueFrom(this.unitsService.getAll()),
-        lastValueFrom(this.fragancesService.getAll())
+        lastValueFrom(this.fragancesService.getAll()),
+        lastValueFrom(this.productsService.getAll({status: 'Activo'})),
       ]);
-      this.KitsArray        = result[0];
+      this.kitsDb           = result[0];
       this.productTypesList = result[1];
       this.unitsList        = result[2];
       this.fragancesList    = result[3];
-
+      this.productsDb       = result[4] as IProduct[];
+      console.log('productsDb > ', this.productsDb);
     } catch (err) {
       console.error(err);
     }
@@ -96,18 +108,28 @@ export class OrdersRegisterProductsComponent implements OnInit {
       this.showKitForm = !this.showKitForm;
     }
     if (form === 'product') {
+      this.filteredProductsList = [];
       this.showProductForm = !this.showProductForm;
     }
   }
 
+  filterProductByType() {
+    this.filteredProductsList = this.productsDb.filter((item) => {return item.tipo_producto_id == this.product_type_id});
+  }
+
+  filterKit() {
+    this.filteredKit = this.kitsDb.filter((item) => {return item.kit.id == Number(this.kit_id)});
+    console.log('filtered kit >> ', this.filteredKit);
+  }
+
   addKit() {
-    if (this.kit && this.kit_number >= 1) {
-      const kit = this.KitsArray.filter((item) => {return item.kit.id === Number(this.kit)})[0];
+    if (this.kit_id && this.kit_number >= 1) {
+      const kit = this.kitsDb.filter((item) => {return item.kit.id === Number(this.kit_id)})[0];
       kit.products.map((item) => {
         (this.applicationForm.controls['productos'] as FormArray).push(this.formBuilder.group({
           kit_id: [item.kit_id || ''],
-          tipo_producto_id: [item.tipo_producto_id, Validators.required],
-          unidad_medida_id: [item.unidad_medida_id, Validators.required],
+          producto_id: [item.tipo_producto_id, Validators.required],
+          descripcion: [item.unidad_medida_id, Validators.required],
           fragancia_id: [''],
           cantidad: [this.kit_number, Validators.required],
           precio: [0, Validators.required],
@@ -120,23 +142,73 @@ export class OrdersRegisterProductsComponent implements OnInit {
     }
   }
 
-  addProduct() {
-    (this.applicationForm.controls['productos'] as FormArray).push(this.formBuilder.group({
-      kit_id: [''],
-      tipo_producto_id: ['', Validators.required],
-      cantidad: ['', Validators.required],
-      precio: ['', Validators.required],
-      subtotal: ['', Validators.required],
-      cambio: ['', Validators.required],
-    }));
+  addProduct(product_id: number) {
+    const product = this.productsDb.filter((item) => {
+      return item.id == product_id
+    })[0];
+    const products: any[] = this.applicationForm.controls['productos'].value;
+    const validate = products.find((item) => {return item.producto_id == product.id});
+    if (!validate) {
+      (this.applicationForm.controls['productos'] as FormArray).push(this.formBuilder.group({
+        producto_id: [product.id, Validators.required],
+        descripcion: [`${this.getProductDescription(product)}`],
+        cantidad: [1, Validators.required],
+        precio: ['', Validators.required],
+        subtotal: ['', Validators.required],
+        tipo: ['', Validators.required]
+      }));
+      this.productsList = this.applicationForm.controls['productos'].value;
+    }
+  }
+
+  updateType(product_id: number, index: number) {
+    const element = (this.applicationForm.controls['productos'] as FormArray).controls[index];
+    const type = element.get('tipo')?.value;
+    const cantidad = element.get('cantidad')?.value;
+    const productValue = this.getProductValue(product_id, type);
+    element.get('precio')?.setValue(productValue);
+    element.get('subtotal')?.setValue((productValue*cantidad));
     this.productsList = this.applicationForm.controls['productos'].value;
   }
 
-  removeProduct(index: number) {
-    if ((this.applicationForm.controls['productos'] as FormArray).length > 1) {
-      (this.applicationForm.controls['productos'] as FormArray).removeAt(index);
-      this.productsList = this.applicationForm.controls['productos'].value;
+  getProductValue(productId: number, type: string) {
+    const product = this.productsDb.find(product => product.id === productId);
+    if (product) {
+      if (type === 'precio_publico') {
+        return product.precio_publico;
+      }
+      if (type === 'precio_kit') {
+        return product.precio_kit;
+      }
+      if (type === 'precio_distribuidor') {
+        return product.precio_distribuidor;
+      }
+      return 0;
+    } else {
+      return 0;
     }
+  }
+
+  updateQuantity(type: string, index: number) {
+    const products: any[] = this.applicationForm.controls['productos'].value;
+    if (type === 'up') {
+      products[index].cantidad += 1;
+    }
+    if (type === 'down' && products[index].cantidad > 1) {
+      products[index].cantidad -= 1;
+    }
+    products[index].subtotal = (products[index].precio * products[index].cantidad);
+    this.applicationForm.controls['productos'].setValue(products);
+    this.productsList = this.applicationForm.controls['productos'].value;
+  }
+
+  getProductDescription(product: IProduct) {
+    return `${product.tipo_producto} ${(product.envase) ? product.envase : ''} X ${product.valor_unidad} ${product.unidad_medida} ${(product.fragancia) ? product.fragancia : ''}`;
+  }
+
+  removeProduct(index: number) {
+    (this.applicationForm.controls['productos'] as FormArray).removeAt(index);
+    this.productsList = this.applicationForm.controls['productos'].value;
   }
 
   async submit() {

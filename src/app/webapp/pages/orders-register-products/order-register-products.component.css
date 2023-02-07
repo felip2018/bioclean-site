@@ -3,3 +3,9 @@
   padding: 10px;
   border-radius: 5px;
 }
+
+.productItem {
+  border:1px solid #CED4DA;
+  padding: 5px;
+  border-radius: 5px;
+}
