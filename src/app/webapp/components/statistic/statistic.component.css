@@ -1,0 +1,31 @@
+.container {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  color: #FFFFFF;
+}
+
+.content {
+  padding: 10px;
+  flex:2;
+  text-align: center;
+}
+
+.content__value {
+  font-weight: bold;
+  font-size: 18pt;
+}
+
+.icon {
+  padding: 10px;
+  flex:1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon i {
+  font-size: 30pt;
+}

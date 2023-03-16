@@ -14,17 +14,31 @@
       </div>
       <hr>
       <div class="menu">
-        <div class="menuItem">
+        <!--<div class="menuItem">
           <a routerLink="home"><i class="fa fa-home"></i> Inicio</a>
         </div>
         <div class="menuItem">
           <a routerLink="configuration"><i class="fa-solid fa-gears"></i> Configuración</a>
+          <div class="submenu">
+            <div class="menuItem">
+              <a routerLink="fragances"> Fragancias</a>
+            </div>
+            <div class="menuItem">
+              <a routerLink="product-types"> Tipos de producto</a>
+            </div>
+            <div class="menuItem">
+              <a routerLink="units"> Unidades</a>
+            </div>
+            <div class="menuItem">
+              <a routerLink="categories"> Categorias</a>
+            </div>
+          </div>
         </div>
         <div class="menuItem">
           <a routerLink="products"><i class="fa-solid fa-wine-bottle"></i> Productos</a>
           <div class="submenu">
             <div class="menuItem">
-              <a routerLink="kits"><i class="fa-solid fa-bars"></i> Kits</a>
+              <a routerLink="kits"> Kits</a>
             </div>
           </div>
         </div>
@@ -36,14 +50,19 @@
         </div>
         <div class="menuItem">
           <a routerLink="users"><i class="fa-solid fa-users"></i> Usuarios</a>
-          <!--<div class="submenu">
-            <div class="menuItem">
-              <a routerLink="register-user"><i class="fa-solid fa-user-plus"></i> Registrar</a>
+        </div>-->
+        <div class="menuItem" *ngFor="let item of menu">
+          <a routerLink="{{item.link}}"><i class="{{item.icon}}"></i> {{item.label}}</a>
+          <div class="submenu" *ngIf="item.type === 'multiple'">
+            <div class="menuItem" *ngFor="let sub of item.childs">
+              <a routerLink="{{sub.link}}"> {{sub.label}}</a>
             </div>
-          </div>-->
+          </div>
         </div>
         <div class="menuItem">
-          <a routerLink="products"><i class="fa-solid fa-power-off"></i> Salir</a>
+          <button class="btn btn-primary btn-block" (click)="closeSession()">
+            <i class="fa-solid fa-power-off"></i> Salir
+          </button>
         </div>
       </div>
     </div>

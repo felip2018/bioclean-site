@@ -125,14 +125,12 @@ export class OrdersRegisterComponent implements OnInit {
   }
 
   async searchCustomer() {
-    console.log(`Buscar cliente Tipo (${this.tipoDocumento}) Número (${this.numeroDocumento})`);
     if (this.tipoDocumento && this.numeroDocumento) {
       try {
         const customer:any = await lastValueFrom(this.usersService.getPersonByDocument({
           tipo_documento_id: Number(this.tipoDocumento),
           numero_documento: Number(this.numeroDocumento)
         }));
-        console.log('customer data > ', customer.data);
         const {
           primer_nombre,
           segundo_nombre,

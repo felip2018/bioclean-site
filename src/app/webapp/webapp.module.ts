@@ -24,6 +24,7 @@ import { KitsRegisterComponent } from './pages/kits-register/kits-register.compo
 import { OrdersRegisterComponent } from './pages/orders-register/orders-register.component';
 import { OrdersRegisterProductsComponent } from './pages/orders-register-products/order-register-products.component';
 import { ContainersComponent } from './pages/containers/containers.component';
+import { StatisticComponent } from './components/statistic/statistic.component';
 
 
 
@@ -49,7 +50,8 @@ import { ContainersComponent } from './pages/containers/containers.component';
     KitsComponent,
     KitsRegisterComponent,
     OrdersRegisterProductsComponent,
-    ContainersComponent
+    ContainersComponent,
+    StatisticComponent
   ],
   imports: [
     CommonModule,

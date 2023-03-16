@@ -1,36 +1,45 @@
-<app-header [title]="'Fragancias'" [showButton]="true" [showForm]="showForm" (showRegisterFormEvent)="showRegisterForm()"></app-header>
-<div class="row">
-  <div class="col-12" style="padding: 10px;">
-    <div *ngIf="showForm" style="background-color: #FFFFFF;border-radius: 5px;padding: 10px;">
-      <form (submit)="submit()" [formGroup]="applicationForm">
-        <label>Ingrese el nombre</label>
-        <input type="text" class="form-control" formControlName="nombre" (input)="formatText('nombre')">
-        <hr>
-        <button type="submit" class="btn btn-primary" [disabled]="!applicationForm.valid">
-          <i class="fa-solid fa-floppy-disk"></i>
-        </button>
-      </form>
+<app-header
+  [title]="'Fragancias'"
+  [showButton]="true"
+  [showForm]="showForm"
+  (showRegisterFormEvent)="showRegisterForm()"
+></app-header>
+<div class="row justify-content-center">
+  <div class="col-xs-12 col-sm-12 col-md-8">
+    <div class="row">
+      <div class="col-12" style="padding: 10px;">
+        <div *ngIf="showForm" style="background-color: #FFFFFF;border-radius: 5px;padding: 10px;">
+          <form (submit)="submit()" [formGroup]="applicationForm">
+            <label>Ingrese el nombre</label>
+            <input type="text" class="form-control" formControlName="nombre" (input)="formatText('nombre')">
+            <hr>
+            <button type="submit" class="btn btn-primary" [disabled]="!applicationForm.valid">
+              <i class="fa-solid fa-floppy-disk"></i>
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<div class="row" *ngFor="let element of fragancesList" style="margin-bottom: 10px;">
-  <div class="col-12">
-    <div style="background-color: #FFFFFF;border-radius: 5px;">
-      <label>{{element.nombre}}</label>
+    <div class="row" *ngFor="let element of fragancesList" style="margin-bottom: 10px;">
+      <div class="col-12">
+        <div style="background-color: #FFFFFF;border-radius: 5px;padding: 10px;">
+          <label>{{element.nombre}}</label>
 
-      <button *ngIf="element.estado == 'Activo'" class="btn btn-danger" style="float:right" title="Eliminar"
-      (click)="updateStatus(element, 'Inactivo')">
-        <i class="fa-solid fa-trash"></i>
-      </button>
+          <button *ngIf="element.estado == 'Activo'" class="btn btn-danger" style="float:right" title="Eliminar"
+          (click)="updateStatus(element, 'Inactivo')">
+            <i class="fa-solid fa-trash"></i>
+          </button>
 
-      <button *ngIf="element.estado == 'Inactivo'" class="btn btn-success" style="float:right" title="Activar"
-      (click)="updateStatus(element, 'Activo')">
-        <i class="fa-solid fa-check"></i>
-      </button>
+          <button *ngIf="element.estado == 'Inactivo'" class="btn btn-success" style="float:right" title="Activar"
+          (click)="updateStatus(element, 'Activo')">
+            <i class="fa-solid fa-check"></i>
+          </button>
 
-      <button class="btn btn-info" style="float:right" title="Editar" (click)="updateFragance(element)">
-        <i class="fa-solid fa-pen"></i>
-      </button>
+          <button class="btn btn-info mr-2" style="float:right" title="Editar" (click)="updateFragance(element)">
+            <i class="fa-solid fa-pen"></i>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

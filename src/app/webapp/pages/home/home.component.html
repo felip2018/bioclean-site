@@ -1,1 +1,35 @@
 <app-header [title]="'Inicio'"></app-header>
+<div class="row" style="padding: 10px;">
+  <div class="col-xs-12 col-sm-12 col-md-3">
+    <app-statistic
+      [value]="150"
+      [title]="'Usuarios'"
+      [icon]="'fa fa-user'"
+      [backgroundColor]="'#ee5253'"
+    ></app-statistic>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-3">
+    <app-statistic
+      [value]="100"
+      [title]="'Pedidos en el mes'"
+      [icon]="'fa fa-user'"
+      [backgroundColor]="'#0abde3'"
+    ></app-statistic>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-3">
+    <app-statistic
+      [value]="30"
+      [title]="'Pedidos pendientes'"
+      [icon]="'fa fa-user'"
+      [backgroundColor]="'#feca57'"
+    ></app-statistic>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-3">
+    <app-statistic
+      [value]="'150.000 COP'"
+      [title]="'Ventas en el mes'"
+      [icon]="'fa-regular fa-dollar-sign'"
+      [backgroundColor]="'#10ac84'"
+    ></app-statistic>
+  </div>
+</div>

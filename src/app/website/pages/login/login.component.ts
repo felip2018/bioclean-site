@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
-import { SS_IS_LOGIN, SS_USER_DATA } from '../../config/webStorageKeys';
+import { SS_IS_LOGIN, SS_USER_DATA } from '../../../webapp/config/storageKeys';
 import { Router } from '@angular/router';
 
 @Component({

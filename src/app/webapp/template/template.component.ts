@@ -1,4 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { navigationMenu } from '../config/navigationMenu';
+import { SS_USER_DATA } from '../config/storageKeys';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-template',
@@ -10,11 +14,14 @@ export class TemplateComponent implements OnInit {
   isHidden = false;
   showCloseMenu = false;
   showOpenMenu = false;
+  menu: any[] = [];
 
-  constructor() { }
+  constructor(private storageService: StorageService,
+    private router: Router) { }
 
   ngOnInit(): void {
-
+    const userData: any = JSON.parse(this.storageService.getItem(SS_USER_DATA) || '{}');
+    this.menu = navigationMenu[userData.perfil ? userData.perfil : 'Default'];
   }
 
   @HostListener('window:resize', ['$event'])
@@ -37,5 +44,10 @@ export class TemplateComponent implements OnInit {
 
   hideShowMenu(status: boolean) {
     this.isHidden = status;
+  }
+
+  closeSession() {
+    this.storageService.clearAll();
+    this.router.navigate(['/home']);
   }
 }

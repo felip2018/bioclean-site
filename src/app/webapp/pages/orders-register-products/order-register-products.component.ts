@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
+import { SS_CUSTOMER_INFO, SS_USER_DATA } from '../../config/storageKeys';
 import Swal from 'sweetalert2';
 import { IGeneric } from '../../models/igeneric';
 import { IKit } from '../../models/ikit';
@@ -12,8 +13,8 @@ import { FragancesService } from '../../services/fragances.service';
 import { OrdersService } from '../../services/orders.service';
 import { ProductTypesService } from '../../services/product-types.service';
 import { ProductsService } from '../../services/products.service';
+import { StorageService } from '../../services/storage.service';
 import { UnitsService } from '../../services/units.service';
-import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-order-register-products',
@@ -44,14 +45,15 @@ export class OrdersRegisterProductsComponent implements OnInit {
   showProductForm: boolean;
 
   today: string = '';
-
+  userName: string = '';
 
   constructor(private formBuilder: FormBuilder,
     private productsService: ProductsService,
     private ordersService: OrdersService,
     private productTypesService: ProductTypesService,
     private unitsService: UnitsService,
-    private fragancesService: FragancesService) {
+    private fragancesService: FragancesService,
+    private storageService: StorageService) {
 
     this.productsDb = [];
     this.showLoader = false;
@@ -67,8 +69,11 @@ export class OrdersRegisterProductsComponent implements OnInit {
     const day = date.getDate();
     this.today = `${date.getFullYear()}-${(month<10)?'0'+month:month}-${(day<10)?'0'+day:day}`;
 
+    const userData = JSON.parse(this.storageService.getItem(SS_USER_DATA) || '{}');
+    this.userName = `${userData.primer_nombre} ${userData.segundo_nombre} ${userData.primer_apellido} ${userData.segundo_apellido}`;
+
     this.applicationForm = this.formBuilder.group({
-      usuario_id: ['', Validators.required],
+      usuario_id: [userData ? userData.usuario_id : 1, Validators.required],
       total: ['', Validators.required],
       fecha_entrega: ['', Validators.required],
       tipo: ['Pedido', Validators.required],
@@ -97,16 +102,12 @@ export class OrdersRegisterProductsComponent implements OnInit {
       this.unitsList        = result[2];
       this.fragancesList    = result[3];
       this.productsDb       = result[4] as IProduct[];
-      console.log('productsDb > ', this.productsDb);
     } catch (err) {
       console.error(err);
     }
   }
 
   showForm(form: string) {
-    if (form === 'kit') {
-      this.showKitForm = !this.showKitForm;
-    }
     if (form === 'product') {
       this.filteredProductsList = [];
       this.showProductForm = !this.showProductForm;
@@ -169,6 +170,16 @@ export class OrdersRegisterProductsComponent implements OnInit {
     element.get('precio')?.setValue(productValue);
     element.get('subtotal')?.setValue((productValue*cantidad));
     this.productsList = this.applicationForm.controls['productos'].value;
+    this.evaluateTotal();
+  }
+
+  evaluateTotal() {
+    let total = 0;
+    const products = this.applicationForm.controls['productos'].value;
+    products.map((element: any) => {
+      total += element.subtotal
+    });
+    this.applicationForm.controls['total'].setValue(total);
   }
 
   getProductValue(productId: number, type: string) {
@@ -200,6 +211,7 @@ export class OrdersRegisterProductsComponent implements OnInit {
     products[index].subtotal = (products[index].precio * products[index].cantidad);
     this.applicationForm.controls['productos'].setValue(products);
     this.productsList = this.applicationForm.controls['productos'].value;
+    this.evaluateTotal();
   }
 
   getProductDescription(product: IProduct) {
@@ -213,7 +225,9 @@ export class OrdersRegisterProductsComponent implements OnInit {
 
   async submit() {
     this.showLoader = true;
+    const customerData = JSON.parse(this.storageService.getItem(SS_CUSTOMER_INFO) || '{}');
     const body: IOrderToSave = {
+      persona_id: customerData.id,
       ...this.applicationForm.value
     };
     try {
@@ -229,6 +243,7 @@ export class OrdersRegisterProductsComponent implements OnInit {
         footer: ''
       });
       this.showLoader = false;
+      this.storageService.removeItem(SS_CUSTOMER_INFO);
     } catch (err: any) {
       console.log('error > ', err);
       Swal.fire({

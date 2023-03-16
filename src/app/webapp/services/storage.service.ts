@@ -18,4 +18,8 @@ export class StorageService {
   removeItem(key: string) {
     sessionStorage.removeItem(key);
   }
+
+  clearAll() {
+    sessionStorage.clear();
+  }
 }
