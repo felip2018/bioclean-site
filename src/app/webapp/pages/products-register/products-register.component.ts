@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
 import { SS_IS_EDIT_PRODUCT, SS_PRODUCT_TO_EDIT } from '../../config/storageKeys';
@@ -20,7 +20,7 @@ import { UtilsService } from '../../services/utils.service';
 })
 export class ProductsRegisterComponent implements OnInit {
 
-  applicationForm: FormGroup;
+  applicationForm: UntypedFormGroup;
   showLoader: boolean;
   categories: any[];
   product_types: any[];
@@ -30,7 +30,7 @@ export class ProductsRegisterComponent implements OnInit {
   title: string;
   isEdit = false;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
     private categoriesService: CategoriesService,
     private productTypesService: ProductTypesService,
     private unitsService: UnitsService,

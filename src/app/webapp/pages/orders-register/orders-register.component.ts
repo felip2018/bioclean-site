@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -24,7 +24,7 @@ export class OrdersRegisterComponent implements OnInit {
   tipoDocumento: string;
   numeroDocumento: string;
   customerDocument: number = 0;
-  applicationForm: FormGroup;
+  applicationForm: UntypedFormGroup;
   showLoader = false;
   isEdit = false;
   countries: ICountry[];
@@ -37,7 +37,7 @@ export class OrdersRegisterComponent implements OnInit {
   selectedCity: number = 0;
   productsList: [];
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
   private utilsService: UtilsService,
   private usersService: UsersService,
   private storageService: StorageService,

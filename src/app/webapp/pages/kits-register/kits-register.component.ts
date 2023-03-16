@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
 import { SS_IS_EDIT_KIT, SS_KIT_TO_EDIT } from '../../config/storageKeys';
@@ -17,7 +17,7 @@ import { UnitsService } from '../../services/units.service';
 })
 export class KitsRegisterComponent implements OnInit {
 
-  applicationForm: FormGroup;
+  applicationForm: UntypedFormGroup;
   categories: any[];
   productTypes: any[];
   unitTypes: any[];
@@ -26,7 +26,7 @@ export class KitsRegisterComponent implements OnInit {
   title = '';
   isEdit = false;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
     private productService: ProductsService,
     private categoriesService: CategoriesService,
     private unitsService: UnitsService,
@@ -81,7 +81,7 @@ export class KitsRegisterComponent implements OnInit {
       this.applicationForm.controls['precio'].setValue(kitInfo.kit.precio);
 
       kitInfo.products.map((product) => {
-        (this.applicationForm.controls['productos'] as FormArray).push(this.formBuilder.group({
+        (this.applicationForm.controls['productos'] as UntypedFormArray).push(this.formBuilder.group({
           tipo_producto_id: [product.tipo_producto_id, Validators.required],
           valor_unidad:     [product.valor_unidad, Validators.required],
           unidad_medida_id: [product.unidad_medida_id, Validators.required]
@@ -96,7 +96,7 @@ export class KitsRegisterComponent implements OnInit {
   }
 
   addProduct() {
-    (this.applicationForm.controls['productos'] as FormArray).push(this.formBuilder.group({
+    (this.applicationForm.controls['productos'] as UntypedFormArray).push(this.formBuilder.group({
       id: [''],
       tipo_producto_id: ['', Validators.required],
       valor_unidad: ['', Validators.required],
@@ -106,8 +106,8 @@ export class KitsRegisterComponent implements OnInit {
   }
 
   removeProduct(index: number) {
-    if ((this.applicationForm.controls['productos'] as FormArray).length > 1) {
-      (this.applicationForm.controls['productos'] as FormArray).removeAt(index);
+    if ((this.applicationForm.controls['productos'] as UntypedFormArray).length > 1) {
+      (this.applicationForm.controls['productos'] as UntypedFormArray).removeAt(index);
       this.productsKit = this.applicationForm.controls['productos'].value;
     }
   }

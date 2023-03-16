@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ICity } from '../../models/icity';
@@ -17,7 +17,7 @@ import { UtilsService } from '../../services/utils.service';
 })
 export class UsersRegisterComponent implements OnInit {
 
-  applicationForm: FormGroup;
+  applicationForm: UntypedFormGroup;
   profiles: IProfile[];
   documentTypes: IDocumentType[];
   countries: ICountry[];
@@ -25,7 +25,7 @@ export class UsersRegisterComponent implements OnInit {
   cities: ICity[];
   showLoader: boolean;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
     private usersService: UsersService,
     private utilsService: UtilsService) {
     this.profiles = [];

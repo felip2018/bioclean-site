@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import { SS_CUSTOMER_INFO, SS_USER_DATA } from '../../config/storageKeys';
 import Swal from 'sweetalert2';
@@ -22,7 +22,7 @@ import { UnitsService } from '../../services/units.service';
   styleUrls: ['./order-register-products.component.css']
 })
 export class OrdersRegisterProductsComponent implements OnInit {
-  applicationForm: FormGroup;
+  applicationForm: UntypedFormGroup;
 
   productsDb: IProduct[];
   filteredProductsList: IProduct[];
@@ -47,7 +47,7 @@ export class OrdersRegisterProductsComponent implements OnInit {
   today: string = '';
   userName: string = '';
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
     private productsService: ProductsService,
     private ordersService: OrdersService,
     private productTypesService: ProductTypesService,
@@ -127,7 +127,7 @@ export class OrdersRegisterProductsComponent implements OnInit {
     if (this.kit_id && this.kit_number >= 1) {
       const kit = this.kitsDb.filter((item) => {return item.kit.id === Number(this.kit_id)})[0];
       kit.products.map((item) => {
-        (this.applicationForm.controls['productos'] as FormArray).push(this.formBuilder.group({
+        (this.applicationForm.controls['productos'] as UntypedFormArray).push(this.formBuilder.group({
           kit_id: [item.kit_id || ''],
           producto_id: [item.tipo_producto_id, Validators.required],
           descripcion: [item.unidad_medida_id, Validators.required],
@@ -150,7 +150,7 @@ export class OrdersRegisterProductsComponent implements OnInit {
     const products: any[] = this.applicationForm.controls['productos'].value;
     const validate = products.find((item) => {return item.producto_id == product.id});
     if (!validate) {
-      (this.applicationForm.controls['productos'] as FormArray).push(this.formBuilder.group({
+      (this.applicationForm.controls['productos'] as UntypedFormArray).push(this.formBuilder.group({
         producto_id: [product.id, Validators.required],
         descripcion: [`${this.getProductDescription(product)}`],
         cantidad: [1, Validators.required],
@@ -163,7 +163,7 @@ export class OrdersRegisterProductsComponent implements OnInit {
   }
 
   updateType(product_id: number, index: number) {
-    const element = (this.applicationForm.controls['productos'] as FormArray).controls[index];
+    const element = (this.applicationForm.controls['productos'] as UntypedFormArray).controls[index];
     const type = element.get('tipo')?.value;
     const cantidad = element.get('cantidad')?.value;
     const productValue = this.getProductValue(product_id, type);
@@ -219,7 +219,7 @@ export class OrdersRegisterProductsComponent implements OnInit {
   }
 
   removeProduct(index: number) {
-    (this.applicationForm.controls['productos'] as FormArray).removeAt(index);
+    (this.applicationForm.controls['productos'] as UntypedFormArray).removeAt(index);
     this.productsList = this.applicationForm.controls['productos'].value;
   }
 

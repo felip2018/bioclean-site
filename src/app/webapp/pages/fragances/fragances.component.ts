@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
 import { IGeneric } from '../../models/igeneric';
@@ -14,10 +14,10 @@ export class FragancesComponent implements OnInit {
 
   showForm: boolean;
   fragancesList: IGeneric[] = [];
-  applicationForm: FormGroup;
+  applicationForm: UntypedFormGroup;
   isUpdate: boolean;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private fragancesService: FragancesService) {
     this.showForm = false;
     this.isUpdate = false;

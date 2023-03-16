@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
 import { IUnit } from '../../models/iunit';
@@ -13,10 +13,10 @@ import { UnitsService } from '../../services/units.service';
 export class UnitsComponent implements OnInit {
   showForm: boolean;
   unitsList: IUnit[] = [];
-  applicationForm: FormGroup;
+  applicationForm: UntypedFormGroup;
   isUpdate: boolean;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private unitsService: UnitsService) {
     this.showForm = false;
     this.isUpdate = false;

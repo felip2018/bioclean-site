@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TemplateComponent } from './template/template.component';
 import { RouterModule } from '@angular/router';
@@ -59,6 +59,7 @@ import { StatisticComponent } from './components/statistic/statistic.component';
     WebappRoutingModule,
     ReactiveFormsModule,
     FormsModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WebappModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
 import { IGeneric } from '../../models/igeneric';
@@ -14,10 +14,10 @@ import { ProductsService } from '../../services/products.service';
 export class ProductTypesComponent implements OnInit {
   showForm: boolean;
   productTypesList: IGeneric[] = [];
-  applicationForm: FormGroup;
+  applicationForm: UntypedFormGroup;
   isUpdate: boolean;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private productTypesService: ProductTypesService) {
     this.showForm = false;
     this.isUpdate = false;

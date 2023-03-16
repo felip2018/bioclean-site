@@ -32,7 +32,11 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "highcharts",
+              "sweetalert2"
+            ]
           },
           "configurations": {
             "production": {
@@ -104,6 +108,5 @@
         }
       }
     }
-  },
-  "defaultProject": "bioclean-site"
+  }
 }
