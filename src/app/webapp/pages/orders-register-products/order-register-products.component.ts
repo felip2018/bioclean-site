@@ -179,20 +179,20 @@ export class OrdersRegisterProductsComponent implements OnInit {
     products.map((element: any) => {
       total += element.subtotal
     });
-    this.applicationForm.controls['total'].setValue(total);
+    this.applicationForm.controls['total'].setValue(Number(total));
   }
 
   getProductValue(productId: number, type: string) {
     const product = this.productsDb.find(product => product.id === productId);
     if (product) {
       if (type === 'precio_publico') {
-        return product.precio_publico;
+        return Number(product.precio_publico);
       }
       if (type === 'precio_kit') {
-        return product.precio_kit;
+        return Number(product.precio_kit);
       }
       if (type === 'precio_distribuidor') {
-        return product.precio_distribuidor;
+        return Number(product.precio_distribuidor);
       }
       return 0;
     } else {

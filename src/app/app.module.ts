@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
+import { HighchartsChartComponent } from 'highcharts-angular';
 
 import localeEs from '@angular/common/locales/es';
 
@@ -11,12 +12,13 @@ registerLocaleData(localeEs, 'es');
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HighchartsChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es-Es'}
