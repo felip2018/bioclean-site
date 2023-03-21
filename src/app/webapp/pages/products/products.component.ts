@@ -51,4 +51,11 @@ export class ProductsComponent implements OnInit {
     this.storageService.setItem(SS_IS_EDIT_PRODUCT, 'no');
     this.router.navigate(['webapp/register-product']);
   }
+
+  getDataFile(event: any) {
+    const dataFile = event;
+    if (dataFile) {
+      console.log('dataFile >> ', dataFile);
+    }
+  }
 }

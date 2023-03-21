@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { IGeneric } from '../models/igeneric';
-import { IOrder } from '../models/iorder';
+import { IGetOrders } from '../models/igetorders';
 import { IOrderToSave } from '../models/iordertosave';
 
 @Injectable({
@@ -20,8 +19,8 @@ export class OrdersService {
     return this.http.put(`${environment.api}/update-order`, body);
   }
 
-  getAll(body: {type: string;}) {
-    return this.http.post<IOrder[]>(`${environment.api}/get-orders`, body);
+  getAll(body: {filterBy: string; value: string | number}) {
+    return this.http.post<IGetOrders[]>(`${environment.api}/get-orders`, body);
   }
 
   updateStatus(body: {id: number, estado: string}) {

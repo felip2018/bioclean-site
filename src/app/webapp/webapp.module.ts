@@ -25,6 +25,7 @@ import { OrdersRegisterComponent } from './pages/orders-register/orders-register
 import { OrdersRegisterProductsComponent } from './pages/orders-register-products/order-register-products.component';
 import { ContainersComponent } from './pages/containers/containers.component';
 import { StatisticComponent } from './components/statistic/statistic.component';
+import { UploadExcelFileComponent } from './components/upload-excel-file/upload-excel-file.component';
 
 
 
@@ -51,7 +52,8 @@ import { StatisticComponent } from './components/statistic/statistic.component';
     KitsRegisterComponent,
     OrdersRegisterProductsComponent,
     ContainersComponent,
-    StatisticComponent
+    StatisticComponent,
+    UploadExcelFileComponent
   ],
   imports: [
     CommonModule,

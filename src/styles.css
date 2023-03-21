@@ -36,3 +36,9 @@ p, label {
   border-radius: 20px;
   padding: 10px;
 }
+
+.lbl_status {
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+}

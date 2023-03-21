@@ -5,26 +5,71 @@
   [showBackButton]="false"
 ></app-header>
 <hr>
-<div class="row justify-content-center">
+<div class="row justify-content-center" id="htmlData">
   <div class="col-xs-12 col-sm-12 col-md-10">
+    <div class="row filter">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <label>Filtrar por</label>
+            <select class="form-control">
+              <option value="">-Seleccione</option>
+              <option value="estado">Por estado</option>
+              <option value="documento">Por documento</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <label>Estado</label>
+            <select class="form-control">
+              <option value="">-Seleccione</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="Entregado">Entregado</option>
+              <option value="Cancelado">Cancelado</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <label>Documento</label>
+            <input type="number" class="form-control">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <br>
+            <button class="btn btn-primary btn-block">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row orderInfo" *ngFor="let order of orders">
       <div class="col-xs-12 col-sm-12 col-md-9">
+        <label>Para: <strong>{{order.primer_nombre}} {{order.segundo_nombre}} {{order.primer_apellido}} {{order.segundo_apellido}}</strong></label><br>
         <label>Fecha de entrega: <strong>{{order.fecha_entrega | date: 'fullDate'}}</strong></label><br>
-        <label>{{order.total | currency: 'COP'}}</label><br>
-        <label style="float: right;">{{order.estado_pedido | uppercase}}</label>
+        <label>Total: <strong>{{order.total | currency: 'COP'}}</strong></label><br>
+
       </div>
       <div class="col-xs-12 col-sm-12 col-md-3">
-        <button *ngIf="order.estado_registro === 'Activo'" class="btn btn-danger" style="float:right" title="Eliminar" (click)="updateStatus(order.id, 'Inactivo')">
-          <i class="fa-solid fa-trash"></i>
-        </button>
+        <div class="row">
+          <div class="col-12">
+            <label class="lbl_status btn-block" [style.background-color]="order.color">
+              {{order.estado_pedido | uppercase}}
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button *ngIf="order.estado_registro === 'Activo'" class="btn btn-danger m-1" style="float:right" title="Eliminar" (click)="updateStatus(order.id, 'Inactivo')">
+              <i class="fa-solid fa-trash"></i>
+            </button>
 
-        <button *ngIf="order.estado_registro === 'Inactivo'" class="btn btn-success" style="float:right" title="Activar" (click)="updateStatus(order.id, 'Activo')">
-          <i class="fa-solid fa-check"></i>
-        </button>
+            <button *ngIf="order.estado_registro === 'Inactivo'" class="btn btn-success m-1" style="float:right" title="Activar" (click)="updateStatus(order.id, 'Activo')">
+              <i class="fa-solid fa-check"></i>
+            </button>
 
-        <button class="btn btn-info" style="float:right" title="Editar" (click)="editOrder(order.id)">
-          <i class="fa-solid fa-pen"></i>
-        </button>
+            <button class="btn btn-info m-1" style="float:right" title="Editar" (click)="editOrder(order.id)">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

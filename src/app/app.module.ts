@@ -4,11 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
-
 import localeEs from '@angular/common/locales/es';
-
-import { NgChartsModule } from 'ng2-charts';
-
 
 registerLocaleData(localeEs, 'es');
 
@@ -19,8 +15,7 @@ registerLocaleData(localeEs, 'es');
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    NgChartsModule
+    HttpClientModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es-Es'}

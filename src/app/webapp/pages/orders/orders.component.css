@@ -2,5 +2,12 @@
   background-color: #FFFFFF;
   padding: 10px;
   border-radius: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.filter {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #bdc9d7;
 }

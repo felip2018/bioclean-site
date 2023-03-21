@@ -8,7 +8,7 @@
 <div class="row justify-content-center">
   <div class="col-xs-12 col-sm-12 col-md-10">
     <div class="row filter">
-      filtro
+      <app-upload-excel-file (sendData)="getDataFile($event)"></app-upload-excel-file>
     </div>
     <div class="row productInfo" *ngFor="let element of productsList">
       <div class="col-2">
