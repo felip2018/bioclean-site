@@ -19,7 +19,7 @@ export const navigationMenu: any = {
       ]
     },
     {
-      type: 'multiple',
+      type: 'simple',
       icon: 'fa-solid fa-wine-bottle',
       link: 'products',
       label: 'Productos',

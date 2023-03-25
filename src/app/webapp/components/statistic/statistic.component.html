@@ -1,9 +1,13 @@
-<div class="container" [style.background-color]="backgroundColor">
-  <div class="icon">
-    <i [class]="icon"></i>
+<div class="containerInfo" [style.background-color]="backgroundColor">
+  <div class="data">
+    <div class="iconContainer">
+      <i [class]="icon"></i>
+    </div>
+    <div class="infoContainer">
+      <label class="content__value">{{value}}</label><br>
+    </div>
   </div>
-  <div class="content">
-    <label class="content__value">{{value}}</label><br>
+  <div class="dataTitle">
     <label>{{title}}</label>
   </div>
 </div>

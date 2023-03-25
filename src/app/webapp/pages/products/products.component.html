@@ -6,7 +6,7 @@
   ></app-header>
 <hr>
 <div class="row justify-content-center">
-  <div class="col-xs-12 col-sm-12 col-md-10 middleContainer">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 middleContainer">
     <div class="row" style="margin-bottom: 10px;padding: 10px;">
       <app-upload-excel-file (sendData)="getDataFile($event)"></app-upload-excel-file>
     </div>
@@ -39,22 +39,31 @@
         <table class="table table-striped">
           <thead class="thead-dark">
             <tr>
-              <th>Código</th>
               <th>Producto</th>
-              <th>Precio público</th>
-              <th>Precio distribuidor</th>
-              <th>Precio kit</th>
-              <th>Inventario</th>
+
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let element of productsList">
-              <td>{{element.codigo}}</td>
-              <td><p>{{element.tipo_producto}} {{element.fragancia}} {{element.envase}} {{element.valor_unidad}} {{element.abreviatura}}</p></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                <p>{{element.tipo_producto}} {{element.fragancia}} {{element.envase}} {{element.valor_unidad}} {{element.abreviatura}}</p>
+                <label><strong>Cod. </strong>{{element.codigo}}</label><br>
+                <label><strong>Precios</strong></label>
+                <div style="display: flex;flex-direction: row;">
+                    <div style="flex: 1;">
+                      <p>Público</p>
+                      {{element.precio_publico | currency: 'COP'}}
+                    </div>
+                    <div style="flex: 1;">
+                      <p>Distribuidor</p>
+                      {{element.precio_distribuidor | currency: 'COP'}}
+                    </div>
+                    <div style="flex: 1;">
+                      <p>Kit</p>
+                      {{element.precio_kit | currency: 'COP'}}
+                    </div>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>

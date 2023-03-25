@@ -78,7 +78,8 @@
 
 #contentContainer {
   padding: 20px;
-  background-color: #c8d6e5;
+  /*background-color: #c8d6e5;*/
+  background-color: #e8e4e2;
   height: 100vh;
   overflow-y: scroll;
 }
