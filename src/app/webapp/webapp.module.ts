@@ -27,7 +27,8 @@ import { ContainersComponent } from './pages/containers/containers.component';
 import { StatisticComponent } from './components/statistic/statistic.component';
 import { UploadExcelFileComponent } from './components/upload-excel-file/upload-excel-file.component';
 
-
+import { HighchartsChartModule } from 'highcharts-angular';
+import { GraphComponent } from './components/graph/graph.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,9 @@ import { UploadExcelFileComponent } from './components/upload-excel-file/upload-
     RouterModule,
     WebappRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HighchartsChartModule,
+    GraphComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

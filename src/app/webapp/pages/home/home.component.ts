@@ -1,4 +1,5 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit  } from '@angular/core';
+import { GraphComponent } from '../../components/graph/graph.component';
 
 @Component({
   selector: 'app-home',

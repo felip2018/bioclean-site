@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 registerLocaleData(localeEs, 'es');
 
@@ -15,7 +16,8 @@ registerLocaleData(localeEs, 'es');
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    HighchartsChartModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es-Es'}
