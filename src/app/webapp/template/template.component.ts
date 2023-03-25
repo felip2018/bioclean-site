@@ -15,13 +15,14 @@ export class TemplateComponent implements OnInit {
   showCloseMenu = false;
   showOpenMenu = false;
   menu: any[] = [];
+  userData: any;
 
   constructor(private storageService: StorageService,
     private router: Router) { }
 
   ngOnInit(): void {
-    const userData: any = JSON.parse(this.storageService.getItem(SS_USER_DATA) || '{}');
-    this.menu = navigationMenu[userData.perfil ? userData.perfil : 'Default'];
+    this.userData = JSON.parse(this.storageService.getItem(SS_USER_DATA) || '{}');
+    this.menu = navigationMenu[this.userData.perfil ? this.userData.perfil : 'Default'];
   }
 
   @HostListener('window:resize', ['$event'])

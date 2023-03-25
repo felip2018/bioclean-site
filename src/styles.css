@@ -42,3 +42,10 @@ p, label {
   border-radius: 10px;
   text-align: center;
 }
+
+.middleContainer {
+  background-color: #FFFFFF;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+}

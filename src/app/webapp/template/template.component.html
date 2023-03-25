@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div *ngIf="isHidden" class="col-xs-12 col-sm-12 col-md-4 col-lg-3" id="menuContainer">
+    <div *ngIf="isHidden" class="col-xs-12 col-sm-12 col-md-5 col-lg-4" id="menuContainer">
       <div class="menuButton" style="width: 100%;float: left;">
         <button class="btn btn-primary btn-close-menu" style="float: right;" (click)="hideShowMenu(false)">
           <i class="fa-solid fa-times"></i>
@@ -9,48 +9,14 @@
       <div class="menuTitle">
         <label>Bienvenido</label><br>
         <img src="/assets/img/avatar_1.png" alt="avatar_1.png"><br>
-        <strong>Miguel Peñuela</strong><br>
-        <label>Administrador</label>
+        <strong>{{userData.primer_nombre}}</strong><br>
+        <label>{{userData.perfil}}</label>
+        <button class="btn btn-primary btn-block" (click)="closeSession()">
+          <i class="fa-solid fa-power-off"></i> Salir
+        </button>
       </div>
       <hr>
       <div class="menu">
-        <!--<div class="menuItem">
-          <a routerLink="home"><i class="fa fa-home"></i> Inicio</a>
-        </div>
-        <div class="menuItem">
-          <a routerLink="configuration"><i class="fa-solid fa-gears"></i> Configuración</a>
-          <div class="submenu">
-            <div class="menuItem">
-              <a routerLink="fragances"> Fragancias</a>
-            </div>
-            <div class="menuItem">
-              <a routerLink="product-types"> Tipos de producto</a>
-            </div>
-            <div class="menuItem">
-              <a routerLink="units"> Unidades</a>
-            </div>
-            <div class="menuItem">
-              <a routerLink="categories"> Categorias</a>
-            </div>
-          </div>
-        </div>
-        <div class="menuItem">
-          <a routerLink="products"><i class="fa-solid fa-wine-bottle"></i> Productos</a>
-          <div class="submenu">
-            <div class="menuItem">
-              <a routerLink="kits"> Kits</a>
-            </div>
-          </div>
-        </div>
-        <div class="menuItem">
-          <a routerLink="orders"><i class="fa-solid fa-file-invoice"></i> Pedidos</a>
-        </div>
-        <div class="menuItem">
-          <a routerLink="sales"><i class="fa-solid fa-dollar-sign"></i> Ventas</a>
-        </div>
-        <div class="menuItem">
-          <a routerLink="users"><i class="fa-solid fa-users"></i> Usuarios</a>
-        </div>-->
         <div class="menuItem" *ngFor="let item of menu">
           <a routerLink="{{item.link}}"><i class="{{item.icon}}"></i> {{item.label}}</a>
           <div class="submenu" *ngIf="item.type === 'multiple'">
@@ -60,9 +26,6 @@
           </div>
         </div>
         <div class="menuItem">
-          <button class="btn btn-primary btn-block" (click)="closeSession()">
-            <i class="fa-solid fa-power-off"></i> Salir
-          </button>
         </div>
       </div>
     </div>

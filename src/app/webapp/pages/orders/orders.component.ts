@@ -5,8 +5,8 @@ import { IGetOrders } from '../../models/igetorders';
 import { OrdersService } from '../../services/orders.service';
 import { StorageService } from '../../services/storage.service';
 
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+// import jsPDF from 'jspdf';
+// import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-orders',
@@ -28,13 +28,14 @@ export class OrdersComponent implements OnInit {
     // setTimeout(() => {this.downloadPDF();}, 2000);
   }
 
-  // tslint:disable-next-line:typedef
   public downloadPDF() {
+
     //const doc = new jsPDF();
     //doc.text('Hello world!', 10, 10);
     //doc.save('hello-world.pdf');
     //doc.output('dataurlnewwindow', {filename: 'miArchivo.pdf'});
-    const DATA = document.getElementById("htmlData") || document.createElement('div');
+
+    /*const DATA = document.getElementById("htmlData") || document.createElement('div');
     const doc = new jsPDF('l', 'mm', [1200, 1210]);
     doc.html(DATA, {
       callback: (doc) => {
@@ -45,7 +46,9 @@ export class OrdersComponent implements OnInit {
       autoPaging: 'text',
       x: 10,
       y: 10
-    });
+    });*/
+
+
     /*const DATA = document.getElementById("htmlData") || document.createElement('div');
     const doc = new jsPDF('p', 'pt', 'a4');
     const options = {

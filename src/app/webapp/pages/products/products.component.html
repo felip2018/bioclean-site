@@ -6,11 +6,11 @@
   ></app-header>
 <hr>
 <div class="row justify-content-center">
-  <div class="col-xs-12 col-sm-12 col-md-10">
-    <div class="row filter">
+  <div class="col-xs-12 col-sm-12 col-md-10 middleContainer">
+    <div class="row" style="margin-bottom: 10px;padding: 10px;">
       <app-upload-excel-file (sendData)="getDataFile($event)"></app-upload-excel-file>
     </div>
-    <div class="row productInfo" *ngFor="let element of productsList">
+    <!--<div class="row productInfo" *ngFor="let element of productsList">
       <div class="col-2">
         <img src="/assets/img/no-image.png" class="card-img-top" alt="no-image.png">
       </div>
@@ -32,6 +32,34 @@
           <i class="fa-solid fa-pen"></i>
         </button>
       </div>
+    </div>-->
+
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>Código</th>
+              <th>Producto</th>
+              <th>Precio público</th>
+              <th>Precio distribuidor</th>
+              <th>Precio kit</th>
+              <th>Inventario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let element of productsList">
+              <td>{{element.codigo}}</td>
+              <td><p>{{element.tipo_producto}} {{element.fragancia}} {{element.envase}} {{element.valor_unidad}} {{element.abreviatura}}</p></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+
   </div>
 </div>
