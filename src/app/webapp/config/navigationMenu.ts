@@ -19,12 +19,13 @@ export const navigationMenu: any = {
       ]
     },
     {
-      type: 'simple',
+      type: 'multiple',
       icon: 'fa-solid fa-wine-bottle',
-      link: 'products',
+      link: 'home',
       label: 'Productos',
       childs: [
-        { link: 'kits', label: 'Kits' },
+        { link: 'products-update-by-file', label: 'Actualizar valores' },
+        { link: 'products', label: 'Ver productos' },
       ]
     },
     {

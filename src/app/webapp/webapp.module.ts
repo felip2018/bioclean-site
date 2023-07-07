@@ -29,6 +29,10 @@ import { UploadExcelFileComponent } from './components/upload-excel-file/upload-
 
 import { HighchartsChartModule } from 'highcharts-angular';
 import { GraphComponent } from './components/graph/graph.component';
+import { HomeAdminComponent } from './components/home-admin/home-admin.component';
+import { HomeOperatorComponent } from './components/home-operator/home-operator.component';
+import { HomeSellerComponent } from './components/home-seller/home-seller.component';
+import { ProductsUpdateByFileComponent } from './pages/products-update-by-file/products-update-by-file.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import { GraphComponent } from './components/graph/graph.component';
     OrdersRegisterProductsComponent,
     ContainersComponent,
     StatisticComponent,
-    UploadExcelFileComponent
+    UploadExcelFileComponent,
+    HomeAdminComponent,
+    HomeOperatorComponent,
+    HomeSellerComponent,
+    ProductsUpdateByFileComponent
   ],
   imports: [
     CommonModule,

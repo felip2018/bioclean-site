@@ -44,4 +44,12 @@ export class UtilsService {
   getContainers() {
     return this.http.get<IGeneric[]>(`${environment.api}/get-containers`);
   }
+
+  getStatistics() {
+    return this.http.get<any>(`${environment.api}/initial-stats`)
+  }
+
+  getCollectedMoney() {
+    return this.http.get<any>(`${environment.api}/collected-money`);
+  }
 }

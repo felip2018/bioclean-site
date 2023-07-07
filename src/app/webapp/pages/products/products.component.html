@@ -7,34 +7,55 @@
 <hr>
 <div class="row justify-content-center">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 middleContainer">
-    <div class="row" style="margin-bottom: 10px;padding: 10px;">
-      <app-upload-excel-file (sendData)="getDataFile($event)"></app-upload-excel-file>
-    </div>
-    <!--<div class="row productInfo" *ngFor="let element of productsList">
-      <div class="col-2">
-        <img src="/assets/img/no-image.png" class="card-img-top" alt="no-image.png">
-      </div>
-      <div class="col-8">
-        <p style="text-align: left;">{{element.tipo_producto}} <br>
-        {{element.fragancia}} {{element.envase}} {{element.valor_unidad}} {{element.abreviatura}}</p>
-        <label>Código: {{element.codigo}}</label>
-      </div>
-      <div class="col-2">
-        <button *ngIf="element.estado === 'Activo'" class="btn btn-danger m-1" style="float:right" title="Eliminar" (click)="updateStatus(element.id, 'Inactivo')">
-          <i class="fa-solid fa-trash"></i>
-        </button>
-
-        <button *ngIf="element.estado === 'Inactivo'" class="btn btn-success m-1" style="float:right" title="Activar" (click)="updateStatus(element.id, 'Activo')">
-          <i class="fa-solid fa-check"></i>
-        </button>
-
-        <button class="btn btn-info m-1" style="float:right" title="Editar" (click)="editProduct(element)">
-          <i class="fa-solid fa-pen"></i>
-        </button>
-      </div>
-    </div>-->
-
     <div class="row">
+      <div class="col-12">
+        <label>Seleccione el tipo de producto</label>
+        <select class="form-control" [(ngModel)]="productTypeId" (change)="filterListByProductType()">
+          <option value="">-Seleccione</option>
+          <option *ngFor="let item of productTypesList" value="{{item.id}}">{{item.nombre}}</option>
+        </select>
+      </div>
+    </div>
+    <!--<div class="row" style="margin-bottom: 10px;padding: 10px;">
+      <app-upload-excel-file (sendData)="getDataFile($event)"></app-upload-excel-file>
+    </div>-->
+    <div class="row">
+      <div class="col-12"><hr></div>
+    </div>
+    <div class="row" *ngFor="let element of productsList" style="margin-bottom: 10px;border:1px solid #dddddd; margin: 5px;border-radius: 5px;">
+      <div class="col-12" style="padding: 10px">
+        <div>
+          <p><strong>{{element.tipo_producto}} {{element.fragancia}} {{element.envase}} {{element.valor_unidad}} {{element.abreviatura}}</strong></p>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+          <div style="flex: 1;">
+            <p><strong>Cod. </strong>{{element.codigo}}</p>
+          </div>
+          <div style="flex: 1;">
+            <p><strong>Inventario. </strong> 6</p>
+          </div>
+        </div>
+        <label><strong>Precios</strong></label>
+        <div style="display: flex;flex-direction: row;">
+            <div style="flex: 1;">
+              <p>Público</p>
+              {{element.precio_publico | currency: 'COP'}}
+            </div>
+            <div style="flex: 1;">
+              <p>Distribuidor</p>
+              {{element.precio_distribuidor | currency: 'COP'}}
+            </div>
+            <div style="flex: 1;">
+              <p>Kit</p>
+              {{element.precio_kit | currency: 'COP'}}
+            </div>
+        </div>
+      </div>
+    </div>
+    <!--<div class="row">
+      <div class="col-12">
+        <hr>
+      </div>
       <div class="col-12">
         <table class="table table-striped">
           <thead class="thead-dark">
@@ -47,7 +68,7 @@
             <tr *ngFor="let element of productsList">
               <td>
                 <p>{{element.tipo_producto}} {{element.fragancia}} {{element.envase}} {{element.valor_unidad}} {{element.abreviatura}}</p>
-                <label><strong>Cod. </strong>{{element.codigo}}</label><br>
+                <label></label><br>
                 <label><strong>Precios</strong></label>
                 <div style="display: flex;flex-direction: row;">
                     <div style="flex: 1;">
@@ -68,7 +89,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div>-->
 
   </div>
 </div>

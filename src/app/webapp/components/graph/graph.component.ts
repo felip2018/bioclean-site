@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import Highcharts from 'highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
@@ -12,26 +12,9 @@ import { HighchartsChartModule } from 'highcharts-angular';
     HighchartsChartModule,
   ]
 })
-export class GraphComponent implements OnInit {
+export class GraphComponent {
 
   Highcharts = Highcharts;
-  linechart: any = {
-    series: [
-      {
-        data: [1, 2, 3],
-      },
-    ],
-    chart: {
-      type: 'line',
-    },
-    title: {
-      text: 'linechart',
-    },
-  };
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  @Input() graphOptions: any = {};
 
 }

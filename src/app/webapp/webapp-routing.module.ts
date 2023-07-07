@@ -17,6 +17,7 @@ import { SalesComponent } from "./pages/sales/sales.component";
 import { UnitsComponent } from "./pages/units/units.component";
 import { UsersRegisterComponent } from "./pages/users-register/users-register.component";
 import { UsersComponent } from "./pages/users/users.component";
+import { ProductsUpdateByFileComponent } from "./pages/products-update-by-file/products-update-by-file.component";
 
 const routes: Routes = [
     {
@@ -27,6 +28,11 @@ const routes: Routes = [
     {
       path: 'products',
       component: ProductsComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'products-update-by-file',
+      component: ProductsUpdateByFileComponent,
       canActivate: [AuthGuard]
     },
     {

@@ -1,0 +1,40 @@
+<app-header [title]="'Administrador'"></app-header>
+<div class="row" style="padding: 10px;">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-2">
+    <app-statistic
+      [value]="this.statistics.total_clientes"
+      [title]="'Usuarios'"
+      [icon]="'fa fa-user'"
+      [backgroundColor]="'#ee5253'"
+    ></app-statistic>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-2">
+    <app-statistic
+      [value]="this.statistics.total_pedidos"
+      [title]="'Pedidos en el mes'"
+      [icon]="'fa-solid fa-list'"
+      [backgroundColor]="'#0abde3'"
+    ></app-statistic>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-2">
+    <app-statistic
+      [value]="this.statistics.total_pendientes"
+      [title]="'Pedidos pendientes'"
+      [icon]="'fa-regular fa-clock'"
+      [backgroundColor]="'#feca57'"
+    ></app-statistic>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 p-2">
+    <app-statistic
+      [value]="this.statistics.total_vendido"
+      [title]="'Ventas en el mes'"
+      [icon]="'fa-regular fa-dollar-sign'"
+      [backgroundColor]="'#10ac84'"
+    ></app-statistic>
+  </div>
+</div>
+<div class="row" id="chart">
+  <div class="col-12" *ngIf="collectedMoney.length > 0">
+    <app-graph [graphOptions]="graphOptions"></app-graph>
+  </div>
+</div>

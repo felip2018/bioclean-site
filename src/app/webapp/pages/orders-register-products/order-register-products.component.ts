@@ -120,7 +120,6 @@ export class OrdersRegisterProductsComponent implements OnInit {
 
   filterKit() {
     this.filteredKit = this.kitsDb.filter((item) => {return item.kit.id == Number(this.kit_id)});
-    console.log('filtered kit >> ', this.filteredKit);
   }
 
   addKit() {
