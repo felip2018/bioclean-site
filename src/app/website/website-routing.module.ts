@@ -8,7 +8,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { PolicyComponent } from "./pages/policy/policy.component";
 import { PrivacyPolicyComponent } from "./pages/privacy-policy/privacy-policy.component";
-import { ProductsComponent } from "./pages/products/products.component";
+import { StoreComponent } from "./pages/store/store.component";
 import { SignupComponent } from "./pages/signup/signup.component";
 import { TermsAndConditionsComponent } from "./pages/terms-and-conditions/terms-and-conditions.component";
 
@@ -22,8 +22,8 @@ const routes: Routes = [
       component: CartComponent
     },
     {
-      path: 'products',
-      component: ProductsComponent
+      path: 'store',
+      component: StoreComponent
     },
     {
       path: 'login',

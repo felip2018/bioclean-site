@@ -1,13 +1,32 @@
 #navigationMenu {
-    position: sticky;
-    z-index: 100;
-    top: 0px;
-    background-color: #FFFFFF;
-    border-radius: 0px 0px 20px 20px;
+  position: sticky;
+  z-index: 100;
+  top: 0px;
+  background-color: #FFFFFF;
+  border-radius: 0px 0px 20px 20px;
+}
+#navbarSupportedContent {
+  float: left;
 }
 .navbar {
   background-color: #FFFFFF !important;
 }
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+}
+
+.nav-item > a {
+  color: #333333;
+  font-size: 14pt !important;
+}
+
 #logoNavBar {
     width: 200px;
     height: auto;
@@ -21,5 +40,6 @@
 }
 
 #navbarSupportedContent li a:hover {
+  color: #CAD641;
   border-bottom: 1px solid #CAD641;
 }

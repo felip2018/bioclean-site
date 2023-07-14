@@ -11,7 +11,7 @@ import { CountItemsComponent } from './components/count-items/count-items.compon
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { CartPreviewComponent } from './components/cart-preview/cart-preview.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ProductsComponent } from './pages/products/products.component';
+import { StoreComponent } from './pages/store/store.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -32,7 +32,7 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
     ProductItemComponent,
     CartPreviewComponent,
     FooterComponent,
-    ProductsComponent,
+    StoreComponent,
     SignupComponent,
     TermsAndConditionsComponent,
     ContactComponent,
