@@ -1,1 +1,96 @@
-<p>cart works!</p>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-12 col-md-10">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+          <h3>Carrito</h3>
+          <hr>
+          <div class="row product-item" *ngFor="let p of cart; let i = index">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+              <strong>{{p.productName}}</strong><br>
+              Precio: {{p.price | currency:'COP'}}<br>
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <div class="row">
+                <div class="col-10">
+                  <strong >{{p.total | currency:'COP'}}</strong>
+                </div>
+                <div class="col-2">
+                  <button class="btn btn-outline-danger" style="float: right;bottom: 0;position: relative;" (click)="removeProduct(i)">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-4">
+                  <button class="btn btn-outline-danger btn-block" (click)="updateProductQuantity(i, 'down')">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                </div>
+                <div class="col-4" style="text-align: center;">
+                  <label>{{p.quantity}}</label>
+                </div>
+                <div class="col-4">
+                  <button class="btn btn-outline-primary btn-block" (click)="updateProductQuantity(i, 'up')">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <h3>Tus datos</h3>
+          <hr>
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <label>Tipo de identificación</label>
+              <select class="form-control">
+                <option value="">-Seleccione</option>
+                <option value="CC">Cédula de ciudadanía</option>
+                <option value="CE">Cédula de extrajería</option>
+                <option value="PAS">Pasaporte</option>
+              </select>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <label>Identificación</label>
+              <input type="number" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <label>Nombres</label>
+              <input class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <label>Apellidos</label>
+              <input class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <label>Correo electrónico</label>
+              <input class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <label>Teléfono</label>
+              <input class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <hr>
+              <button class="btn btn-primary btn-block">Realizar pedido</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
