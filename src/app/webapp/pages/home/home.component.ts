@@ -1,5 +1,4 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit  } from '@angular/core';
-import { GraphComponent } from '../../components/graph/graph.component';
 import { StorageService } from '../../services/storage.service';
 import { SS_USER_DATA } from '../../config/storageKeys';
 

@@ -4,8 +4,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border:1px solid red;
 }
-.carousel-caption>p, .carousel-caption>h3 {
+.carousel-caption > p, .carousel-caption>h3 {
   color: #FFFFFF;
   text-align: center;
 }
